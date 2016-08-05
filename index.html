@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- REGRAS PARA ID'S
+        - 1º Sempre começar com letras minúsculas;
+        - 2º Não são permitidos espaços nem acentos;
+        - 3º A primeira letra de cada palavra é maiúscula, só a primeira letra, independentemente de ser uma sigla ou não.
+-->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title> C.A.F.E. </title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <script src="0/jQuery/jquery-3.1.0.min.js"></script>
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $('.collapse').collapse('show')
+        }
+    </script>
+</head>
+<body class="cr9">
+    <div class="container" align="center">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-x">
+            <div class="container plBG5 navbar-x"> <img class="m-a-p" src="0/logoscafe/logo_transp_branco.png" width="100"> </div>
+        </nav>
+
+        <form class="form-signin ">
+            <div class="" id="pn01">
+                <label class="labPer" for="pNome">Nome</label> <br/>
+                <input id="pNome" type="text" placeholder="Digite seu nome" class="form-control"> <br/>
+
+                <label class="labPer" for="pIdade">Idade</label> <br/>
+                <input id="pIdade" type="number" placeholder="0" min="0" class="form-control"> <br/>
+
+                <div id="pnSexo">
+                    <label class="labPer">Sexo</label> <br/>
+                    <label class="custom-control custom-radio">
+                        <input id="pSexMasculino" name="pSex" type="radio" class="custom-control-input" value="opSex1">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Masculino</span>
+                    </label>
+                    <label class="custom-control custom-radio m-l-3">
+                        <input id="pSexFeminino" name="pSex" type="radio" class="custom-control-input" value="opSex2">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Feminino</span>
+                    </label>
+                </div> <br/>
+            </div>
+
+            <div class="" id="pn02">
+                <label class="labPer" for="pMassa">Massa corporal (em Kg)</label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="pMassa" placeholder="0" min="0">
+                        <div class="input-group-addon">Kg</div>
+                    </div>
+                </div> <br/>
+
+                <label class="labPer" for="pEstrutura">Estrutura (em Metros)</label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="pEstrutura" placeholder="0" min="0">
+                        <div class="input-group-addon">m</div>
+                    </div>
+                </div> <br/>
+
+                <div id="pnGravida">
+                    <label class="labPer">Grávida</label> <br/>
+                    <label class="custom-control custom-radio">
+                        <input id="pGravidaS" name="pGravida" type="radio" class="custom-control-input" value="opGra1">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Sim</span>
+                    </label>
+                    <label class="custom-control custom-radio m-l-3">
+                        <input id="pGravidaN" name="pGravida"  type="radio" class="custom-control-input" value="opGra2">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Não</span>
+                    </label>
+                </div> <br/>
+            </div>
+
+            <div class="" id="pn03">
+                <label for="pNivel" class="labPer">Nível de atividade física</label>
+                <select id="pNivel" class="form-control">
+                    <option value="opLeve"> Leve </option>
+                    <option value="opModerada"> Moderada </option>
+                    <option value="opIntensa"> Intensa </option>
+                </select>
+                    <small class="left">Fator de atividade Física:</small> <span> ~ </span> <br/>
+                    <small class="right">Correção do fator de atividade Física:</small> <span> ~ </span> <br/>
+                <br/>
+
+                <label for="pImcDes" class="labPer">IMC desejado</label>
+                <input id="pEstrutura" type="number" placeholder="0" min="0" class="form-control"> <br/>
+
+                <label for="pPesoDes" class="labPer">Peso desejado (em Kg)</label>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="pPesoDes" placeholder="0" min="0">
+                        <div class="input-group-addon">Kg</div>
+                    </div>
+                </div> <br/>
+            </div>
+
+            <button class="btn btn-primary btn-lg" type="submit">Calcular</button>
+
+            <div id="pnResposta">
+                <br/>
+                <label for="">GMB (Gasto Metabólico Basal):</label> <br/>
+                <label for="">GET (Gasto Energético Total):</label> <br/>
+                <label for="">IMC (Índice de Massa Corporal):</label> <br/>
+                <label for="">IMC desejado:</label> <br/>
+                <label for="">Peso desejado:</label> <br/>
+                <label for="">Quantidade de quilos a perder/ganhar:</label> <br/>
+            </div>
+        </form>
+
+        <!--- CALCULO -->
+
+
+        <p id="_titulo">Calcule o seu IMC</p>
+
+
+        <form id="calculadora" name="calculadora" method="POST" action="">
+
+            <table style="width:80%;">
+                <tr style="height: 60px;">
+                    <td align="left"><label type="calculadora">Peso</label><br /><br /></td>
+                    <td><input type="tel" text name="peso" value="" maxlength="6"  class="validate[required, custom[valida_peso]] decimal" data-prompt-position="topRight:-160" placeholder="Digite seu peso em quilogramas" /><br /><br /></td>
+                </tr>
+                <tr>
+                    <td align="left"><label type="calculadora">Altura</label><br /><br /></td>
+                    <td><input type="tel" text name="altura" value="" maxlength="5"  class="validate[required, custom[valida_altura]] decimal" data-prompt-position="topRight:-160" placeholder="Digite sua altura em metros" /><br /><br /></td>
+                </tr>
+            </table>
+
+            <input type="hidden" name="op" value="calcularIMC" />
+
+        </form>
+        <br />
+
+        <!--- FIM DO CALCULO -->
+        <br/>
+    </div>
+</body>
+</html>
