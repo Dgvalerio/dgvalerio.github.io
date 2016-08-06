@@ -10,9 +10,31 @@
     <title> C.A.F.E. </title>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <script src="0/jQuery/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <script type="application/javascript">
+        var cod = "";
         $(document).ready(function () {
-            $('.collapse').collapse('show')
+            function valida_form (){
+                if(document.getElementById("cNome").value == ""){
+                    alert('Por favor, preencha o campo nome');
+                    document.getElementById("cNome").focus();
+                    return false
+                }
+            }
+
+            if($("#pNome").value == ""){
+                alert('Por favor, preencha o campo nome');
+                document.getElementById("pNome").focus();
+                return false
+            } else {
+                cod = document.getElementById("pNome").value;
+                $('#pn02').collapse({ toggle: true });
+                $('#pn03').collapse({ toggle: true });
+                $('#btnCalc').collapse({ toggle: true });
+                alert("preenchido" + cod)
+            }
         });
     </script>
 </head>
@@ -21,15 +43,22 @@
     <div class="plBG5 navbar-y"> <br/> <br/> <br/> <br/> <br/> </div>
 </nav>
 <div class="container" align="center">
-
     <nav class="navbar-fixed-top navbar-x">
-        <div class="plBG5 navbar-x"> <img class="m-a-p" src="0/logoscafe/logo_transp_branco.png" width="100"> </div>
+        <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div>
     </nav>
 
     <form class="form-custom plBG9">
         <div class="" id="pn01">
             <label class="labPer" for="pNome">Nome</label> <br/>
-            <input id="pNome" type="text" placeholder="Digite seu nome" class="form-control"> <br/>
+            <input
+                    id="pNome"
+                    type="text"
+                    placeholder="Digite seu nome"
+                    class="form-control"
+                    value=""
+                    required="required"
+                    title="Nome"
+            > <br/>
 
             <label class="labPer" for="pIdade">Idade</label> <br/>
             <input id="pIdade" type="number" placeholder="0" min="0" class="form-control"> <br/>
@@ -49,7 +78,7 @@
             </div> <br/>
         </div>
 
-        <div class="" id="pn02">
+        <div class="collapse" id="pn02">
             <label class="labPer" for="pMassa">Massa corporal (em Kg)</label>
             <div class="form-group">
                 <div class="input-group">
@@ -81,7 +110,7 @@
             </div> <br/>
         </div>
 
-        <div class="" id="pn03">
+        <div class="collapse" id="pn03">
             <label for="pNivel" class="labPer">Nível de atividade física</label>
             <select id="pNivel" class="form-control">
                 <option value="opLeve"> Leve </option>
@@ -92,8 +121,13 @@
             <small class="right">Correção do fator de atividade Física:</small> <span> ~ </span> <br/>
             <br/>
 
-            <label for="pImcDes" class="labPer">IMC desejado</label>
-            <input id="pImcDes" type="number" placeholder="0" min="0" class="form-control"> <br/>
+            <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" class="form-control" id="pImcDes" placeholder="0" min="0">
+                    <div class="input-group-addon">Kg/m<sup>2</sup></div>
+                </div>
+            </div> <br/>
 
             <label for="pPesoDes" class="labPer">Peso desejado (em Kg)</label>
             <div class="form-group">
@@ -104,9 +138,9 @@
             </div> <br/>
         </div>
 
-        <button class="btn btn-primary btn-lg" type="submit">Calcular</button>
+        <button id="btnCalc" class="btn btn-primary btn-lg collapse" type="submit">Calcular</button>
 
-        <div id="pnResposta">
+        <div class="collapse" id="pnResposta">
             <br/>
             <label>GMB (Gasto Metabólico Basal):</label> <br/>
             <label>GET (Gasto Energético Total):</label> <br/>
