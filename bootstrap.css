@@ -14,7 +14,7 @@ html {
 body {
   margin: 0;
 }
-body { padding-top: 70px; }
+body { padding-top: 58px; }
 
 article,
 aside,
@@ -1888,6 +1888,13 @@ pre code {
   border: 1px solid #eceeef;
 }
 
+.form-custom {
+    padding: 0.5rem 0.75rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    border-radius: 0.25rem;
+}
+
 .form-control {
   display: block;
   width: 100%;
@@ -3714,6 +3721,14 @@ input[type="button"].btn-block {
     padding: 0.5rem 1rem;
 }
 .navbar-x{padding: 0; max-width: none;}
+.navbar-y{
+    padding: 0;
+    max-width: none;
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: -1;
+}
 
 .navbar::after {
   content: "";
