@@ -9,6 +9,7 @@
     <meta charset="UTF-8">
     <title> C.A.F.E. </title>
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="shortcut icon" href="ext/logo_miniatura.ico" type="image/x-icon">
     <script src="0/jQuery/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -154,9 +155,26 @@
 
             return false;
         }
+
+        setTimeout(preload,3800);
+        function preload(){
+            document.getElementById('gif').style.opacity = '0';
+            document.getElementById('gif').style.transition = 'all 1s';
+            document.getElementById('preloader').style.opacity = '0';
+            document.getElementById('preloader').style.transition = 'all 1s';
+            document.getElementById('content').style.display = 'block';
+            }
     </script>
 </head>
+
+<div id="preloader" style="display:block; position: absolute; left: 0px; right: 0px; bottom: 0px; top: 0px; background: #1b272e; z-index: 9999;">
+    <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
+</div>
+
 <body class="plBG7">
+
+<div id="content" style="display: none">
+
 <nav class="navbar-y">
     <div class="plBG5 navbar-y"> <br/> <br/> <br/> <br/> <br/> </div>
 </nav>
@@ -280,5 +298,8 @@
     </form>
     <br/>
 </div>
+
+</div>
+
 </body>
 </html>
