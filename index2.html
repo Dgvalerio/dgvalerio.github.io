@@ -163,7 +163,12 @@
             document.getElementById('preloader').style.opacity = '0';
             document.getElementById('preloader').style.transition = 'all 1s';
             document.getElementById('content').style.display = 'block';
+            setTimeout(oculta,500)
             }
+        function oculta(){
+            document.getElementById('gif').style.display = 'none';
+            document.getElementById('preloader').style.display = 'none';
+        }
     </script>
 </head>
 
