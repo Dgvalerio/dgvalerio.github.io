@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<!-- REGRAS PARA ID'S
+        - 1º Sempre começar com letras minúsculas;
+        - 2º Não são permitidos espaços nem acentos;
+        - 3º A primeira letra de cada palavra é maiúscula, só a primeira letra, independentemente de ser uma sigla ou não.
+-->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title> C.A.F.E. </title>
+    <link rel="shortcut icon" href="ext/logo_miniatura.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="application/javascript">
+        function calculaGMB(s,i,P,g,n){
+            var gmb=0;
+            if (s==1){
+                if (i>=1 && i<=3) { gmb=(60.9*P)-54 }
+                else if (i>=4 && i<=10) { gmb = (22.7 * P) + 495 }
+                else if (i>=11 && i<=18) { gmb = (17.5 * P) + 651 }
+                else if (i>=19 && i<=30) { gmb = (15.3 * P) + 679 }
+                else if (i>=31 && i<=60) { gmb = (11.6 * P) + 879 }
+                else if (i>60) { gmb = (13.5 * P) + 487 }
+            }
+            else if (s==2){
+                if (i>=1 && i<=3) { gmb = (61 * P) - 51 }
+                else if (i>=4 && i<=10) { gmb = (22.5 * P) + 499 }
+                else if (i>=11 && i<=18) { gmb = (12.2 * P) + 746 }
+                else if (i>=19 && i<=30) { gmb = (14.7 * P) + 496 }
+                else if (i>=31 && i<=60) { gmb = (8.7 * P) + 829 }
+                else if (i>60) { gmb = (10.5 * P) + 596 }
+                if (g==1) { if (n == 1) { gmb += 200 } }
+                else if (n==2) { gmb += 285 }
+            }
+            return gmb
+        }
+
+        function calculaGET(gmb,s,i,n){
+            var GET=0;
+            if (s==1) {
+                if (n == 1) { GET = gmb * 1.55 }
+                else if (n == 2) { GET = gmb * 1.78 }
+                else if (n == 3) { GET = gmb * 2.10 }
+            }
+
+            else if (s==2) {
+                if (n == 1) { GET = gmb * 1.56 }
+                else if (n == 2) { GET = gmb * 1.64 }
+                else if (n == 3) {  GET = gmb * 1.82 }
+            }
+
+            if (i>=13 && i<=15) { GET += (GET * 0.13) }
+            else if (i>=16 && i<=19) { GET += (GET * 0.05) }
+            else if (i>=40 && i<=49) { GET -= (GET * 0.05) }
+            else if (i>=50 && i<=59) { GET -= (GET * 0.10) }
+            else if (i>=60 && i<=69) { GET -= (GET * 0.20) }
+            else if (i>70) { GET -= (GET * 0.30) }
+            return GET
+        }
+
+        function calculo(){
+            var nome = document.form.pNome.value;
+            var idade = document.form.pIdade.value;
+
+            if (document.form.pSexMasculino.checked) { sexo = 1 }
+            else if (document.form.pSexFeminino.checked) { sexo = 2 }
+
+            var peso = document.form.pMassa.value;
+            var altura = document.form.pEstrutura.value;
+
+            if (document.form.pGravidaS.checked) { gest = 1 }
+            else if (document.form.pGravidaN.checked) { gest = 2 }
+
+            var naf = document.form.pNivel.value;
+
+            var imc = peso/(altura*altura);
+
+            var gmb = calculaGMB(sexo,idade,peso,gest,naf);
+            var GET = calculaGET(gmb,sexo,idade,naf);
+
+            document.getElementById('cIMC').value = parseFloat(imc.toFixed(2));
+            document.getElementById('cGMB').value = parseFloat(gmb.toFixed(2));
+            document.getElementById('cGET').value = parseFloat(GET.toFixed(2));
+
+            return false;
+        }
+
+        setTimeout(preload,3800);
+        function preload(){
+            document.getElementById('gif').style.opacity = '0';
+            document.getElementById('gif').style.transition = 'all 1s';
+            document.getElementById('preloader').style.opacity = '0';
+            document.getElementById('preloader').style.transition = 'all 1s';
+            document.getElementById('content').style.display = 'block';
+            setTimeout(oculta,500)
+        }
+        function oculta(){
+            document.getElementById('gif').style.display = 'none';
+            document.getElementById('preloader').style.display = 'none';
+        }
+    </script>
+    <script type="application/javascript">
+        $(document).ready(function () { forms() });
+
+        function forms(){
+            if(document.getElementById("pNome").value != "") {
+                document.getElementById("pIdade").disabled = false;
+                if (document.getElementById("pIdade").value != "") {
+                    var i = document.getElementById("pIdade").value;
+                    var c = "0";
+                    if (i>=13 && i<=15) {c="13"}
+                    else if (i>=16 && i<=19) {c="5"}
+                    else if (i>=40 && i<=49) {c="-5"}
+                    else if (i>=50 && i<=59) {c="-10"}
+                    else if (i>=60 && i<=70) {c="-20"}
+                    else if (i>70) {c="-30"}
+                    if (c != "0") {
+                        $('#smCorrecao').collapse('show');
+                        $("#spCorrecao").html(c+"%");
+                    }
+                    else{
+                        $('#smCorrecao').collapse('hide');
+                    }
+                    document.getElementById("pSexMasculino").disabled = false;
+                    document.getElementById("pSexFeminino").disabled = false;
+                    if (document.getElementById("pSexMasculino").checked) {
+                        $('#pn02').collapse('show');
+                        $('#pnGravida').collapse('hide');
+                        document.getElementById("pMassa").disabled = false;
+                        document.getElementById("pEstrutura").disabled = false;
+
+                        if (document.getElementById("pMassa").value != "" && document.getElementById("pEstrutura").value != ""){
+                            $('#pn03').collapse('show');
+                            document.getElementById("pNivel").disabled = false;
+
+                        }
+                    } else if (document.getElementById("pSexFeminino").checked) {
+                        $('#pn02').collapse('show');
+                        $('#pnGravida').collapse('show');
+                        document.getElementById("pMassa").disabled = false;
+                        document.getElementById("pEstrutura").disabled = false;
+                        document.getElementById("pGravidaS").disabled = false;
+                        document.getElementById("pGravidaN").disabled = false;
+                        if (document.getElementById("pMassa").value != "" && document.getElementById("pEstrutura").value != "" && (document.getElementById("pGravidaS").checked || document.getElementById("pGravidaN").checked)){
+                            $('#pn03').collapse('show');
+                            document.getElementById("pNivel").disabled = false;
+                        }
+                    }
+                }
+                else {
+                    document.getElementById("pSexMasculino").disabled = true;
+                    document.getElementById("pSexMasculino").checked = false;
+                    document.getElementById("pSexFeminino").disabled = true;
+                    document.getElementById("pSexFeminino").checked = false;
+                    $('#pn03').collapse('hide');
+                }
+            } else {
+                document.getElementById("pIdade").disabled = true;
+                document.getElementById("pSexMasculino").disabled = true;
+                document.getElementById("pSexFeminino").disabled = true;
+
+                document.getElementById("pMassa").disabled = true;
+                document.getElementById("pEstrutura").disabled = true;
+                document.getElementById("pGravidaS").disabled = true;
+                document.getElementById("pGravidaN").disabled = true;
+
+                document.getElementById("pNivel").disabled = true;
+
+                document.getElementById("pImcDes").disabled = true;
+                document.getElementById("pPesoDes").disabled = true;
+            } setTimeout(forms,500); }
+
+    </script>
+</head>
+<body class="plBG7">
+
+<!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;"> <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;"> </div> -->
+
+<nav class="navbar-y">
+    <div class="plBG5 navbar-y"><div style="display: none;" id="loader"> CARREGANDO </div>  <br/> <br/> <br/> <br/> <br/> </div>
+</nav>
+<div class="container" align="center">
+    <!-- <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav> -->
+
+    <form class="form-custom plBG9" onsubmit="return calculo()">
+        <div class="" id="pn01">
+            <label class="labPer" for="pNome">Nome</label> <br/>
+            <input
+                    id="pNome"
+                    type="text"
+                    placeholder="Digite seu nome"
+                    class="form-control"
+
+                    required="required"
+                    title="Nome"
+            > <br/>
+
+            <label class="labPer" for="pIdade">Idade</label> <br/>
+            <input id="pIdade" type="number" placeholder="0" min="0" class="form-control">
+            <small class="right collapse" id="smCorrecao">Correção do fator de atividade Física: <span id="spCorrecao"> ~ </span> <br/> </small> <br/>
+
+            <div id="pnSexo">
+                <label class="labPer">Sexo</label> <br/>
+                <label class="custom-control custom-radio">
+                    <input id="pSexMasculino" name="pSex" type="radio" value="opSex1" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Masculino</span>
+                </label>
+                <label class="custom-control custom-radio m-l-3">
+                    <input id="pSexFeminino" name="pSex" type="radio" value="opSex2" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Feminino</span>
+                </label>
+            </div> <br/>
+        </div>
+
+        <div class="collapse" id="pn02">
+            <label class="labPer" for="pMassa">Massa corporal (em Kg)</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" id="pMassa" placeholder="0" min="0" class="form-control">
+                    <div class="input-group-addon">Kg</div>
+                </div>
+            </div> <br/>
+
+            <label class="labPer" for="pEstrutura">Estatura (em Metros)</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" id="pEstrutura" placeholder="0" min="0" step="any" class="form-control">
+                    <div class="input-group-addon">m</div>
+                </div>
+            </div> <br/>
+
+            <div class="collapse" id="pnGravida">
+                <label class="labPer">Grávida</label> <br/>
+                <label class="custom-control custom-radio">
+                    <input id="pGravidaS" name="pGravida" type="radio" value="opGra1" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Sim</span>
+                </label>
+                <label class="custom-control custom-radio m-l-3">
+                    <input id="pGravidaN" name="pGravida"  type="radio" value="opGra2" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Não</span>
+                </label>
+            </div> <br/>
+        </div>
+
+        <div class="collapse" id="pn03">
+            <label for="pNivel" class="labPer">Nível de atividade física</label>
+            <select id="pNivel" class="form-control">
+                <option value=""> (Clique para selecionar) </option>
+                <option value="1"> Leve </option>
+                <option value="2"> Moderada </option>
+                <option value="3"> Intensa </option>
+            </select>
+            <small class="left">Fator de atividade Física:</small> <span> ~ </span> <br/>
+            <br/>
+        </div>
+
+        <div class="collapse" id="pn04">
+            <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
+                    <div class="input-group-addon">Kg/m<sup>2</sup></div>
+                </div>
+            </div> <br/>
+
+            <label for="pPesoDes" class="labPer">Peso desejado (em Kg)</label>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
+                    <div class="input-group-addon">Kg</div>
+                </div>
+            </div> <br/>
+        </div>
+
+        <button id="btnCalc" class="btn btn-primary btn-lg collapse" type="button">Calcular</button>
+
+        <div class="collapse" id="pnResposta">
+            <br/>
+            <label>GMB (Gasto Metabólico Basal):</label> <br/>
+            <label>GET (Gasto Energético Total):</label> <br/>
+            <label>IMC (Índice de Massa Corporal):</label> <br/>
+            <label>IMC desejado:</label> <br/>
+            <label>Peso desejado:</label> <br/>
+            <label>Quantidade de quilos a perder/ganhar:</label> <br/>
+        </div>
+    </form>
+    <br/>
+</div>
+</body>
+</html>
