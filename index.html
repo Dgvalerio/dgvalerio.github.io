@@ -84,7 +84,6 @@
             document.getElementById('cIMC').value = parseFloat(imc.toFixed(2));
             document.getElementById('cGMB').value = parseFloat(gmb.toFixed(2));
             document.getElementById('cGET').value = parseFloat(GET.toFixed(2));
-
             return false;
         }
 
@@ -94,7 +93,6 @@
             document.getElementById('gif').style.transition = 'all 1s';
             document.getElementById('preloader').style.opacity = '0';
             document.getElementById('preloader').style.transition = 'all 1s';
-            document.getElementById('content').style.display = 'block';
             setTimeout(oculta,500)
         }
         function oculta(){
@@ -107,77 +105,67 @@
 
         function forms(){
             if(document.getElementById("pNome").value != "") {
-                document.getElementById("pIdade").disabled = false;
+                $("#pIdade").prop("disabled", false);
                 if (document.getElementById("pIdade").value != "") {
-                    var i = document.getElementById("pIdade").value;
-                    var c = "0";
-                    if (i>=13 && i<=15) {c="13"}
-                    else if (i>=16 && i<=19) {c="5"}
-                    else if (i>=40 && i<=49) {c="-5"}
-                    else if (i>=50 && i<=59) {c="-10"}
-                    else if (i>=60 && i<=70) {c="-20"}
-                    else if (i>70) {c="-30"}
-                    if (c != "0") {
-                        $('#smCorrecao').collapse('show');
-                        $("#spCorrecao").html(c+"%");
-                    }
-                    else{
-                        $('#smCorrecao').collapse('hide');
-                    }
-                    document.getElementById("pSexMasculino").disabled = false;
-                    document.getElementById("pSexFeminino").disabled = false;
-                    if (document.getElementById("pSexMasculino").checked) {
-                        $('#pn02').collapse('show');
-                        $('#pnGravida').collapse('hide');
-                        document.getElementById("pMassa").disabled = false;
-                        document.getElementById("pEstrutura").disabled = false;
+                    var i = document.getElementById("pIdade").value; var c = "0";
+                    if (i>=13 && i<=15) {c="13"} else if (i>=16 && i<=19) {c="5"} else if (i>=40 && i<=49) {c="-5"} else if (i>=50 && i<=59) {c="-10"} else if (i>=60 && i<=70) {c="-20"} else if (i>70) {c="-30"}
+                    if (c != "0") { $('#smCorrecao').collapse('show'); $("#spCorrecao").html(c+"%"); }
+                    else{ $('#smCorrecao').collapse('hide'); }
 
+                    $("#pSexMasculino").prop("disabled", false);
+                    $("#pSexFeminino").prop("disabled", false);
+                    if (document.getElementById("pSexMasculino").checked) {
+                        $('#pn02').collapse('show'); $('#pnGravida').collapse('hide');
+
+                        $("#pMassa").prop("disabled", false);
+                        $("#pEstrutura").prop("disabled", false);
                         if (document.getElementById("pMassa").value != "" && document.getElementById("pEstrutura").value != ""){
                             $('#pn03').collapse('show');
-                            document.getElementById("pNivel").disabled = false;
 
+                            $("#pNivel").prop("disabled", false);
                         }
                     } else if (document.getElementById("pSexFeminino").checked) {
                         $('#pn02').collapse('show');
                         $('#pnGravida').collapse('show');
-                        document.getElementById("pMassa").disabled = false;
-                        document.getElementById("pEstrutura").disabled = false;
-                        document.getElementById("pGravidaS").disabled = false;
-                        document.getElementById("pGravidaN").disabled = false;
+
+                        $("#pMassa").prop("disabled", false);
+                        $("#pEstrutura").prop("disabled", false);
+                        $("#pGravidaS").prop("disabled", false);
+                        $("#pGravidaN").prop("disabled", false);
                         if (document.getElementById("pMassa").value != "" && document.getElementById("pEstrutura").value != "" && (document.getElementById("pGravidaS").checked || document.getElementById("pGravidaN").checked)){
                             $('#pn03').collapse('show');
-                            document.getElementById("pNivel").disabled = false;
+                            $("#pNivel").prop("disabled", false);
                         }
                     }
                 }
                 else {
-                    document.getElementById("pSexMasculino").disabled = true;
+                    $("#pSexMasculino").prop("disabled", true);
                     document.getElementById("pSexMasculino").checked = false;
-                    document.getElementById("pSexFeminino").disabled = true;
+                    $("#pSexFeminino").prop("disabled", true);
                     document.getElementById("pSexFeminino").checked = false;
                     $('#pn03').collapse('hide');
                 }
             } else {
-                document.getElementById("pIdade").disabled = true;
-                document.getElementById("pSexMasculino").disabled = true;
-                document.getElementById("pSexFeminino").disabled = true;
+                $("#pIdade").prop("disabled", true);
+                $("#pSexMasculino").prop("disabled", true);
+                $("#pSexFeminino").prop("disabled", true);
 
-                document.getElementById("pMassa").disabled = true;
-                document.getElementById("pEstrutura").disabled = true;
-                document.getElementById("pGravidaS").disabled = true;
-                document.getElementById("pGravidaN").disabled = true;
+                $("#pMassa").prop("disabled", true);
+                $("#pEstrutura").prop("disabled", true);
+                $("#pGravidaS").prop("disabled", true);
+                $("#pGravidaN").prop("disabled", true);
 
-                document.getElementById("pNivel").disabled = true;
+                $("#pNivel").prop("disabled", true);
 
-                document.getElementById("pImcDes").disabled = true;
-                document.getElementById("pPesoDes").disabled = true;
+                $("#pImcDes").prop("disabled", true);
+                $("#pPesoDes").prop("disabled", true);
             } setTimeout(forms,500); }
 
     </script>
 </head>
 <body class="plBG7">
 
-<!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;"> <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;"> </div> -->
+<div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;"> <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;"> </div>
 
 <nav class="navbar-y">
     <div class="plBG5 navbar-y"><div style="display: none;" id="loader"> CARREGANDO </div>  <br/> <br/> <br/> <br/> <br/> </div>
