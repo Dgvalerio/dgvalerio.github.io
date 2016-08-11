@@ -62,7 +62,10 @@
     function calculo(){
         if (verificaCalcula()) {
             $('#pnFormulario').collapse('hide');
+            $('#pn04').collapse('hide');
             $('#pnResposta').collapse('show');
+            $('#pn06').collapse('show');
+            r = 1;
             var sexo = 0;
             var gest = 0;
             var nome = document.form.pNome.value;
@@ -86,6 +89,13 @@
         }
     }
 
+    function recalculo(){
+        r = 0;
+        $('#pnFormulario').collapse('show');
+        $('#pnResposta').collapse('hide');
+        $('#pn06').collapse('hide');
+    }
+
     setTimeout(function(){document.getElementById('gif').style.opacity = '0';
         document.getElementById('gif').style.transition = 'all 1s';
         document.getElementById('preloader').style.opacity = '0';
@@ -99,6 +109,7 @@
 
     setTimeout(function(){(setInterval('forms()',200))},3000);
     var stat = 0;
+    var r = 0;
     $(document).ready(function () { $('#pnFormulario').collapse('show'); });
 
     function verificaSexo() {
@@ -110,13 +121,9 @@
             }
             if (document.getElementById('pGravidaS').checked){
                 $("#opIntensa").prop("disabled", true);
-                if (document.getElementById('pNivel').value == 3){
-                    document.getElementById('pNivel').value = 0
-                }
+                if (document.getElementById('pNivel').value == 3){ document.getElementById('pNivel').value = 0 }
             }
-            else{
-                $("#opIntensa").prop("disabled", false);
-            }
+            else{ $("#opIntensa").prop("disabled", false); }
         }
         if (document.getElementById('pSexMasculino').checked) {
             $('#pnGravida').collapse('hide');
@@ -127,7 +134,7 @@
     }
 
     function verificaCalcula() {
-        if (document.getElementById('pNome').value != "" && document.getElementById('pIdade').value != "") {
+        if (document.getElementById('pNome').value != "" && document.getElementById('pIdade').value != "" && r==0) {
             if (document.getElementById('pSexFeminino').checked) {
                 if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != "" && (document.getElementById('pGravidaS').checked || document.getElementById('pGravidaN').checked)){
                     $('#pn04').collapse('show');
@@ -412,6 +419,11 @@
                     <td> <span> - </span> </td> </tr>
             </table>
         </div>
+
+        <div class="collapse" id="pn06">
+            <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
+        </div>
+
     </form>
     <br/>
 </div>
