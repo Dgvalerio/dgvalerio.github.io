@@ -108,6 +108,15 @@
                 $("#pGravidaS").prop("disabled", false);
                 $("#pGravidaN").prop("disabled", false);
             }
+            if (document.getElementById('pGravidaS').checked){
+                $("#opIntensa").prop("disabled", true);
+                if (document.getElementById('pNivel').value == 3){
+                    document.getElementById('pNivel').value = 0
+                }
+            }
+            else{
+                $("#opIntensa").prop("disabled", false);
+            }
         }
         if (document.getElementById('pSexMasculino').checked) {
             $('#pnGravida').collapse('hide');
@@ -351,7 +360,7 @@
                 <option value=""> (Clique para selecionar) </option>
                 <option value="1"> Leve </option>
                 <option value="2"> Moderada </option>
-                <option value="3"> Intensa </option>
+                <option value="3" id="opIntensa"> Intensa </option>
             </select>
             <small class="left collapse" id="smFator">Fator de atividade Física: <span id="spFator"> ~ </span> </small>
             <br/>
