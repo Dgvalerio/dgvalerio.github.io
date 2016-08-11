@@ -76,26 +76,13 @@
                 if (document.form.pGravidaS.checked) { gest = 1 }
                 else if (document.form.pGravidaN.checked) { gest = 2 }
                 var imc = peso / (altura * altura);
-
-                if (imc < 18.5) { dimc = "Baixo peso";
-                } else if (imc >= 18.5 && imc < 25) { dimc = "Peso Normal";
-                } else if (imc >= 25 && imc < 30) { dimc = "Pré-obesidade";
-                } else if (imc >= 30 && imc < 35) { dimc = "Obesidade Grau I";
-                } else if (imc >= 35 && imc < 40) { dimc = "Obesidade Grau II";
-                } else if (imc > 40) { dimc = "Obesidade Grau III"; }
-                
+                if (imc < 18.5) {dimc = "Baixo peso";} else if (imc >= 18.5 && imc < 25) {dimc = "Peso Normal";} else if (imc >= 25 && imc < 30) {dimc = "Pré-obesidade";} else if (imc >= 30 && imc < 35) {dimc = "Obesidade Grau I";}else if (imc >= 35 && imc < 40) {dimc = "Obesidade Grau II";}else if (imc > 40) {dimc = "Obesidade Grau III";}
+                $("#cIMC").html(parseFloat(imc.toFixed(2))); $("#dIMC").html(dimc);
                 var gmb = calculaGMB(sexo, idade, peso, gest, naf);
-                var GET = calculaGET(gmb, sexo, idade, naf);
-                $("#cIMC").html(parseFloat(imc.toFixed(2)));
-                $("#dIMC").html(dimc);
-
                 $("#cGMB").html(parseFloat(gmb.toFixed(2)));
-                $("#dGMB").html(parseFloat(gmb.toFixed(2)));
-
+                var GET = calculaGET(gmb, sexo, idade, naf);
                 $("#cGET").html(parseFloat(GET.toFixed(2)));
-                $("#dGET").html(parseFloat(GET.toFixed(2)));
-            }
-            else { alert("Preencha todos os campos obrigatórios!") }
+            } else { alert("Preencha todos os campos obrigatórios!") }
         }
 
         setTimeout(function(){document.getElementById('gif').style.opacity = '0';
@@ -120,12 +107,16 @@
                     $("#pGravidaS").prop("disabled", false);
                     $("#pGravidaN").prop("disabled", false);
                 }
+                if (document.getElementById('pGravidaS').checked){
+                    $("#opIntensa").prop("disabled", true);
+                    if (document.getElementById('pNivel').value == 3){ document.getElementById('pNivel').value = 0 }
+                }
+                else{ $("#opIntensa").prop("disabled", false); }
             }
             if (document.getElementById('pSexMasculino').checked) {
                 $('#pnGravida').collapse('hide');
                 document.getElementById('pGravidaS').checked=false;
                 document.getElementById('pGravidaN').checked=false;
-
             }
         }
 
@@ -133,101 +124,48 @@
             if (document.getElementById('pNome').value != "" && document.getElementById('pIdade').value != "") {
                 if (document.getElementById('pSexFeminino').checked) {
                     if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != "" && (document.getElementById('pGravidaS').checked || document.getElementById('pGravidaN').checked)){
-                        $('#pn04').collapse('show');
-                        return true;
-                    }
-                    else {
-                        $('#pn04').collapse('hide');
-                        return false;
-                    }
+                        $('#pn04').collapse('show'); return true; }
+                    else { $('#pn04').collapse('hide'); return false; }
                 }
                 if (document.getElementById('pSexMasculino').checked) {
                     if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != ""){
-                        $('#pn04').collapse('show');
-                        return true;
-                    }
-                    else {
-                        $('#pn04').collapse('hide');
-                        return false;
-                    }
+                        $('#pn04').collapse('show'); return true; }
+                    else { $('#pn04').collapse('hide'); return false; }
                 }
             }
-            else {
-                $('#pn04').collapse('hide');
-                return false;
-            }
+            else { $('#pn04').collapse('hide'); return false; }
         }
 
         function dadosEspeciais() {
             if (document.getElementById("pIdade").value != "") {
                 var i = document.getElementById("pIdade").value;
                 c = "0";
-                if (i >= 13 && i <= 15) {
-                    c = "13"
-                }
-                else if (i >= 16 && i <= 19) {
-                    c = "5"
-                }
-                else if (i >= 40 && i <= 49) {
-                    c = "-5"
-                }
-                else if (i >= 50 && i <= 59) {
-                    c = "-10"
-                }
-                else if (i >= 60 && i <= 70) {
-                    c = "-20"
-                }
-                else if (i > 70) {
-                    c = "-30"
-                }
-                if (c != "0") {
-                    $('#smCorrecao').collapse('show');
-                    $("#spCorrecao").html(c + "%");
-                }
-                else {
-                    $('#smCorrecao').collapse('hide');
-                }
+                if (i >= 13 && i <= 15) { c = "13" }
+                else if (i >= 16 && i <= 19) { c = "5" }
+                else if (i >= 40 && i <= 49) { c = "-5" }
+                else if (i >= 50 && i <= 59) { c = "-10" }
+                else if (i >= 60 && i <= 70) { c = "-20" }
+                else if (i > 70) { c = "-30" }
+                if (c != "0") { $('#smCorrecao').collapse('show'); $("#spCorrecao").html(c + "%"); }
+                else { $('#smCorrecao').collapse('hide'); }
             }
             if (document.getElementById("pSexMasculino").checked) {
                 naf = document.getElementById("pNivel").value;
                 c = 0;
-                if (naf == 1) {
-                    c = "1,55"
-                }
-                else if (naf == 2) {
-                    c = "1,78"
-                }
-                else if (naf == 3) {
-                    c = "2,10"
-                }
-                if (c != "0") {
-                    $('#smFator').collapse('show');
-                    $("#spFator").html(c);
-                }
-                else {
-                    $('#smFator').collapse('hide');
-                }
+                if (naf == 1) { c = "1,55" }
+                else if (naf == 2) { c = "1,78" }
+                else if (naf == 3) { c = "2,10" }
+                if (c != "0") { $('#smFator').collapse('show'); $("#spFator").html(c); }
+                else { $('#smFator').collapse('hide'); }
             }
-
             if (document.getElementById("pSexFeminino").checked) {
                 naf = document.getElementById("pNivel").value;
                 c = 0;
-                if (naf == 1) {
-                    c = "1,56"
-                }
-                else if (naf == 2) {
-                    c = "1,64"
-                }
-                else if (naf == 3) {
-                    c = "1,82"
-                }
-                if (c != "0") {
-                    $('#smFator').collapse('show');
-                    $("#spFator").html(c);
-                }
-                else {
-                    $('#smFator').collapse('hide');
-                }
+                if (naf == 1) { c = "1,56" }
+                else if (naf == 2) { c = "1,64" }
+                else if (naf == 3) { c = "1,82" }
+                if (c != "0") { $('#smFator').collapse('show'); $("#spFator").html(c); }
+                else { $('#smFator').collapse('hide'); }
             }
         }
 
@@ -298,7 +236,6 @@
     <div class="container" align="center">
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>
         <form class="form-custom plBG9" method="post" name="form" id="formulario">
-
             <div id="pnFormulario" class="collapse">
                 <div id="pn01">
                     <label class="labPer" for="pNome">Nome</label> <br/>
@@ -361,7 +298,7 @@
                         <option value=""> (Clique para selecionar) </option>
                         <option value="1"> Leve </option>
                         <option value="2"> Moderada </option>
-                        <option value="3"> Intensa </option>
+                        <option value="3" id="opIntensa"> Intensa </option>
                     </select>
                     <small class="left collapse" id="smFator">Fator de atividade Física: <span id="spFator"> ~ </span> </small>
                     <br/>
@@ -403,17 +340,17 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <th class="col-md-4 text-md-center" scope="row">GMB (Gasto Metabólico Basal):</th>
-                        <td class="col-md-4 text-md-center"> <span id="cIMC"> - </span> </td>
-                        <td class="col-md-4 text-md-center"> <span id="dIMC"> - </span> </td> </tr>
-                    <tr>
                         <th class="col-md-4 text-md-center" scope="row">GET (Gasto Energético Total):</th>
+                        <td class="col-md-4 text-md-center"> <span id="cGET"> - </span> </td>
+                        <td class="col-md-4 text-md-center"> <span id="dGET"> </span> </td> </tr>
+                    <tr>
+                        <th class="col-md-4 text-md-center" scope="row">GMB (Gasto Metabólico Basal):</th>
                         <td class="col-md-4 text-md-center"> <span id="cGMB"> - </span> </td>
-                        <td class="col-md-4 text-md-center"> <span id="dGMB"> - </span> </td> </tr>
+                        <td class="col-md-4 text-md-center"> <span id="dGMB"> </span> </td> </tr>
                     <tr>
                         <th class="col-md-4 text-md-center" scope="row">IMC (Índice de Massa Corporal):</th>
-                        <td class="col-md-4 text-md-center"> <span id="cGET"> - </span> </td>
-                        <td class="col-md-4 text-md-center"> <span id="dGET"> - </span> </td> </tr>
+                        <td class="col-md-4 text-md-center"> <span id="cIMC"> - </span> </td>
+                        <td class="col-md-4 text-md-center"> <span id="dIMC"> - </span> </td> </tr>
                     </tbody>
                 </table>
 
@@ -424,3 +361,4 @@
 </div>
 </body>
 </html>
+
