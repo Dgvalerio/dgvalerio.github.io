@@ -81,24 +81,13 @@
             var gmb = calculaGMB(sexo,idade,peso,gest,naf);
             var GET = calculaGET(gmb,sexo,idade,naf);
 
-            document.getElementById('cIMC').value = parseFloat(imc.toFixed(2));
-            document.getElementById('cGMB').value = parseFloat(gmb.toFixed(2));
-            document.getElementById('cGET').value = parseFloat(GET.toFixed(2));
+            $("#cIMC").html(parseFloat(imc.toFixed(2)));
+            $("#cGMB").html(parseFloat(gmb.toFixed(2)));
+            $("#cGET").html(parseFloat(GET.toFixed(2)));
+
             return false;
         }
 
-        setTimeout(preload,3800);
-        function preload(){
-            document.getElementById('gif').style.opacity = '0';
-            document.getElementById('gif').style.transition = 'all 1s';
-            document.getElementById('preloader').style.opacity = '0';
-            document.getElementById('preloader').style.transition = 'all 1s';
-            setTimeout(oculta,500)
-        }
-        function oculta(){
-            document.getElementById('gif').style.display = 'none';
-            document.getElementById('preloader').style.display = 'none';
-        }
     </script>
     <script type="application/javascript">
         $(document).ready(function () { $('.collapse').collapse('show'); });
@@ -163,6 +152,8 @@
             } setTimeout(forms,500); }
 
     </script>
+
+
 </head>
 <body class="plBG7">
 
@@ -173,19 +164,10 @@
 </nav>
 <div class="container" align="center">
     <!-- <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav> -->
-
-    <form class="form-custom plBG9" onsubmit="return calculo()">
-        <div class="" id="pn01">
+    <form class="form-custom plBG9" method="post" name="form" id="formulario" onsubmit="return calculo()">
+        <div id="pn01">
             <label class="labPer" for="pNome">Nome</label> <br/>
-            <input
-                    id="pNome"
-                    type="text"
-                    placeholder="Digite seu nome"
-                    class="form-control"
-
-                    required="required"
-                    title="Nome"
-            > <br/>
+            <input  id="pNome" type="text" placeholder="Digite seu nome" class="form-control" title="Nome"/> <br/>
 
             <label class="labPer" for="pIdade">Idade</label> <br/>
             <input id="pIdade" type="number" placeholder="0" min="0" class="form-control">
@@ -268,16 +250,31 @@
             </div> <br/>
         </div>
 
-        <button id="btnCalc" class="btn btn-primary btn-block btn-lg collapse" type="button">Calcular</button>
+        <button id="btnCalc" class="btn btn-primary btn-block btn-lg collapse" type="submit">Calcular</button>
 
         <div class="collapse" id="pnResposta">
             <br/>
-            <label>GMB (Gasto Metabólico Basal):</label> <br/>
-            <label>GET (Gasto Energético Total):</label> <br/>
-            <label>IMC (Índice de Massa Corporal):</label> <br/>
-            <label>IMC desejado:</label> <br/>
-            <label>Peso desejado:</label> <br/>
-            <label>Quantidade de quilos a perder/ganhar:</label> <br/>
+
+            <table>
+                <tr>
+                    <td><label class="labPer">GMB (Gasto Metabólico Basal):</label></td>
+                    <td> <span id="cIMC"> - </span> </td> </tr>
+                <tr>
+                    <td><label class="labPer">GET (Gasto Energético Total):</label></td>
+                    <td> <span id="cGMB"> - </span> </td> </tr>
+                <tr>
+                    <td><label class="labPer">IMC (Índice de Massa Corporal):</label></td>
+                    <td> <span id="cGET"> - </span> </td> </tr>
+                <tr>
+                    <td><label class="labPer">IMC desejado:</label></td>
+                    <td> <span> - </span> </td> </tr>
+                <tr>
+                    <td><label class="labPer">Peso desejado:</label></td>
+                    <td> <span> - </span> </td> </tr>
+                <tr>
+                    <td><label class="labPer">Quantidade de quilos a perder/ganhar:</label></td>
+                    <td> <span> - </span> </td> </tr>
+            </table>
         </div>
     </form>
     <br/>
