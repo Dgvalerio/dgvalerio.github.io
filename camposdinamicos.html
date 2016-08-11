@@ -3,8 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>CAFE</title>
-    <link rel="shortcut icon" href="ext/logo_miniatura.ico" type="image/x-icon" />
-    <script src="0/jQuery/jquery-3.1.0.min.js"></script>
+    <link rel="shortcut icon" href="../ext/logo_miniatura.ico" type="image/x-icon" />
 </head>
 
 <script>
@@ -141,10 +140,9 @@
         return false;
     }
 
-
     function valida_form (){
         if(document.getElementById("cNome").value != ""){
-            $("#cIdade").disabled = false;
+            document.getElementById("cIdade").disabled = false;
             document.getElementById("cMasc").disabled = false;
             document.getElementById("cFem").disabled = false;
         }
@@ -164,7 +162,6 @@
             document.getElementById("cNgest").disabled = true;
         }
     }
-
 
     function mostraDiv2(){
         if (document.getElementById("cNome").value != "" && document.getElementById("cIdade").value != "") {
@@ -198,6 +195,8 @@
             document.getElementById("c4").style.display = 'none'
         }
     }
+
+
 
 </script>
 
