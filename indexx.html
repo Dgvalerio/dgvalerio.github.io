@@ -15,7 +15,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script type="application/javascript">
-        var c, naf, dimc;
+        var c, naf;
         function calculaGMB(s,i,P,g,n){
             var gmb=0;
             if (s==1){
@@ -63,7 +63,11 @@
         function calculo(){
             if (verificaCalcula()) {
                 $('#pnFormulario').collapse('hide');
+                $('#pn04').collapse('hide');
+                $('#formulario').collapse('hide');
                 $('#pnResposta').collapse('show');
+                $('#pn06').collapse('show');
+                r = 1;
                 var sexo = 0;
                 var gest = 0;
                 var nome = document.form.pNome.value;
@@ -82,7 +86,18 @@
                 $("#cGMB").html(parseFloat(gmb.toFixed(2)));
                 var GET = calculaGET(gmb, sexo, idade, naf);
                 $("#cGET").html(parseFloat(GET.toFixed(2)));
-            } else { alert("Preencha todos os campos obrigatórios!") }
+            }
+            else {
+                alert("Preencha todos os campos obrigatórios!")
+            }
+        }
+
+        function recalculo(){
+            r = 0;
+            $('#pnFormulario').collapse('show');
+            $('#formulario').collapse('show');
+            $('#pnResposta').collapse('hide');
+            $('#pn06').collapse('hide');
         }
 
         setTimeout(function(){document.getElementById('gif').style.opacity = '0';
@@ -98,7 +113,8 @@
 
         setTimeout(function(){(setInterval('forms()',200))},3000);
         var stat = 0;
-        $(document).ready(function () { $('#pnFormulario').collapse('show'); });
+        var r = 0;
+        $(document).ready(function () { $('#formulario').collapse('show'); $('#pnFormulario').collapse('show'); });
 
         function verificaSexo() {
             if (document.getElementById('pSexFeminino').checked) {
@@ -117,55 +133,109 @@
                 $('#pnGravida').collapse('hide');
                 document.getElementById('pGravidaS').checked=false;
                 document.getElementById('pGravidaN').checked=false;
+                $("#opIntensa").prop("disabled", false)
             }
         }
 
         function verificaCalcula() {
-            if (document.getElementById('pNome').value != "" && document.getElementById('pIdade').value != "") {
+            if (document.getElementById('pNome').value != "" && document.getElementById('pIdade').value != "" && r==0) {
                 if (document.getElementById('pSexFeminino').checked) {
                     if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != "" && (document.getElementById('pGravidaS').checked || document.getElementById('pGravidaN').checked)){
-                        $('#pn04').collapse('show'); return true; }
-                    else { $('#pn04').collapse('hide'); return false; }
+                        $('#pn04').collapse('show');
+                        return true;
+                    }
+                    else {
+                        $('#pn04').collapse('hide');
+                        return false;
+                    }
                 }
                 if (document.getElementById('pSexMasculino').checked) {
                     if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != ""){
-                        $('#pn04').collapse('show'); return true; }
-                    else { $('#pn04').collapse('hide'); return false; }
+                        $('#pn04').collapse('show');
+                        return true;
+                    }
+                    else {
+                        $('#pn04').collapse('hide');
+                        return false;
+                    }
                 }
             }
-            else { $('#pn04').collapse('hide'); return false; }
+            else {
+                $('#pn04').collapse('hide');
+                return false;
+            }
         }
 
         function dadosEspeciais() {
             if (document.getElementById("pIdade").value != "") {
                 var i = document.getElementById("pIdade").value;
                 c = "0";
-                if (i >= 13 && i <= 15) { c = "13" }
-                else if (i >= 16 && i <= 19) { c = "5" }
-                else if (i >= 40 && i <= 49) { c = "-5" }
-                else if (i >= 50 && i <= 59) { c = "-10" }
-                else if (i >= 60 && i <= 70) { c = "-20" }
-                else if (i > 70) { c = "-30" }
-                if (c != "0") { $('#smCorrecao').collapse('show'); $("#spCorrecao").html(c + "%"); }
-                else { $('#smCorrecao').collapse('hide'); }
+                if (i >= 13 && i <= 15) {
+                    c = "13"
+                }
+                else if (i >= 16 && i <= 19) {
+                    c = "5"
+                }
+                else if (i >= 40 && i <= 49) {
+                    c = "-5"
+                }
+                else if (i >= 50 && i <= 59) {
+                    c = "-10"
+                }
+                else if (i >= 60 && i <= 70) {
+                    c = "-20"
+                }
+                else if (i > 70) {
+                    c = "-30"
+                }
+                if (c != "0") {
+                    $('#smCorrecao').collapse('show');
+                    $("#spCorrecao").html(c + "%");
+                }
+                else {
+                    $('#smCorrecao').collapse('hide');
+                }
             }
             if (document.getElementById("pSexMasculino").checked) {
                 naf = document.getElementById("pNivel").value;
                 c = 0;
-                if (naf == 1) { c = "1,55" }
-                else if (naf == 2) { c = "1,78" }
-                else if (naf == 3) { c = "2,10" }
-                if (c != "0") { $('#smFator').collapse('show'); $("#spFator").html(c); }
-                else { $('#smFator').collapse('hide'); }
+                if (naf == 1) {
+                    c = "1,55"
+                }
+                else if (naf == 2) {
+                    c = "1,78"
+                }
+                else if (naf == 3) {
+                    c = "2,10"
+                }
+                if (c != "0") {
+                    $('#smFator').collapse('show');
+                    $("#spFator").html(c);
+                }
+                else {
+                    $('#smFator').collapse('hide');
+                }
             }
+
             if (document.getElementById("pSexFeminino").checked) {
                 naf = document.getElementById("pNivel").value;
                 c = 0;
-                if (naf == 1) { c = "1,56" }
-                else if (naf == 2) { c = "1,64" }
-                else if (naf == 3) { c = "1,82" }
-                if (c != "0") { $('#smFator').collapse('show'); $("#spFator").html(c); }
-                else { $('#smFator').collapse('hide'); }
+                if (naf == 1) {
+                    c = "1,56"
+                }
+                else if (naf == 2) {
+                    c = "1,64"
+                }
+                else if (naf == 3) {
+                    c = "1,82"
+                }
+                if (c != "0") {
+                    $('#smFator').collapse('show');
+                    $("#spFator").html(c);
+                }
+                else {
+                    $('#smFator').collapse('hide');
+                }
             }
         }
 
@@ -225,7 +295,7 @@
     </script>
 </head>
 <body class="plBG7">
-<div id="preloader" style="display:block; position: absolute; left: 0px; right: 0px; bottom: 0px; top: 0px; background: #1b272e; z-index: 9999;">
+<div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
     <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
 </div>
 
@@ -235,7 +305,7 @@
     </nav>
     <div class="container" align="center">
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>
-        <form class="form-custom plBG9" method="post" name="form" id="formulario">
+        <form class="collapse form-custom plBG9" method="post" name="form" id="formulario">
             <div id="pnFormulario" class="collapse">
                 <div id="pn01">
                     <label class="labPer" for="pNome">Nome</label> <br/>
@@ -326,39 +396,33 @@
                     </div>
                 </div> <br/>
             </div>
-
-            <div class="collapse" id="pnResposta">
-                <br/>
-
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="col-md-4 text-md-center"> - </th>
-                        <th class="col-md-4 text-md-center">Valor</th>
-                        <th class="col-md-4 text-md-center">Classificação</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th class="col-md-4 text-md-center" scope="row">GET (Gasto Energético Total):</th>
-                        <td class="col-md-4 text-md-center"> <span id="cGET"> - </span> </td>
-                        <td class="col-md-4 text-md-center"> <span id="dGET"> </span> </td> </tr>
-                    <tr>
-                        <th class="col-md-4 text-md-center" scope="row">GMB (Gasto Metabólico Basal):</th>
-                        <td class="col-md-4 text-md-center"> <span id="cGMB"> - </span> </td>
-                        <td class="col-md-4 text-md-center"> <span id="dGMB"> </span> </td> </tr>
-                    <tr>
-                        <th class="col-md-4 text-md-center" scope="row">IMC (Índice de Massa Corporal):</th>
-                        <td class="col-md-4 text-md-center"> <span id="cIMC"> - </span> </td>
-                        <td class="col-md-4 text-md-center"> <span id="dIMC"> - </span> </td> </tr>
-                    </tbody>
-                </table>
-
-            </div>
         </form>
         <br/>
+
+        <div class="form-custom plBG4 collapse" id="pnResposta">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th class="col-md-4 text-md-center" scope="row">GET (Gasto Energético Total):</th>
+                    <td class="col-md-4 text-md-center"> <span id="cGET"> - </span> </td>
+                    <td class="col-md-4 text-md-center"> <span> - </span> </td> </tr>
+                <tr>
+                    <th class="col-md-4 text-md-center" scope="row">GMB (Gasto Metabólico Basal):</th>
+                    <td class="col-md-4 text-md-center"> <span id="cGMB"> - </span> </td>
+                    <td class="col-md-4 text-md-center"> <span> - </span> </td> </tr>
+                <tr>
+                    <th class="col-md-4 text-md-center" scope="row">IMC (Índice de Massa Corporal):</th>
+                    <td class="col-md-4 text-md-center"> <span id="cIMC"> - </span> </td>
+                    <td class="col-md-4 text-md-center"> <span id="dIMC"> - </span> </td> </tr>
+                </tbody>
+            </table>
+
+            <div class="collapse" id="pn06">
+                <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
+            </div>
+        </div>
     </div>
+
 </div>
 </body>
 </html>
-
