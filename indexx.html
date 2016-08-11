@@ -88,9 +88,22 @@
             return false;
         }
 
+        setTimeout(preload,3800);
+        function preload(){
+            document.getElementById('gif').style.opacity = '0';
+            document.getElementById('gif').style.transition = 'all 1s';
+            document.getElementById('preloader').style.opacity = '0';
+            document.getElementById('preloader').style.transition = 'all 1s';
+            setTimeout(oculta,500)
+        }
+        function oculta(){
+            document.getElementById('gif').style.display = 'none';
+            document.getElementById('preloader').style.display = 'none';
+        }
+
     </script>
     <script type="application/javascript">
-        $(document).ready(function () { $('.collapse').collapse('show'); });
+        $(document).ready(function () { forms() });
 
         function forms(){
             if(document.getElementById("pNome").value != "") {
@@ -157,13 +170,13 @@
 </head>
 <body class="plBG7">
 
-<!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;"> <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;"> </div> -->
+<div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;"> <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;"> </div>
 
 <nav class="navbar-y">
     <div class="plBG5 navbar-y"><div style="display: none;" id="loader"> CARREGANDO </div>  <br/> <br/> <br/> <br/> <br/> </div>
 </nav>
 <div class="container" align="center">
-    <!-- <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav> -->
+    <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>
     <form class="form-custom plBG9" method="post" name="form" id="formulario" onsubmit="return calculo()">
         <div id="pn01">
             <label class="labPer" for="pNome">Nome</label> <br/>
