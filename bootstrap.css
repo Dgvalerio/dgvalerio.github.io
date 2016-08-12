@@ -1888,6 +1888,14 @@ pre code {
   border: 1px solid #eceeef;
 }
 
+.result-custom {
+  padding: 0;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  text-shadow: 0 1px 3px rgba(119, 119, 119, 0) !important;
+}
+
 .form-custom {
     padding: 0.5rem 0.75rem;
     -webkit-border-radius: 0.25rem;
@@ -6411,7 +6419,10 @@ a.text-danger:focus, a.text-danger:hover {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */.crBranca {color: white;}
+/*# sourceMappingURL=bootstrap.css.map */
+
+.crBranca {color: white;}  .crPreta {color: black;}
+.pC9 { background-color: #fff; }  .pC0 { background-color: #000; }
 
 .plM9 { background-color: #3E2723; } .plBG9 { background-color: #263238; } .plB9 { background-color: #0D47A1; }
 .plM8 { background-color: #4E342E; } .plBG8 { background-color: #37474F; } .plB8 { background-color: #1565C0; }
