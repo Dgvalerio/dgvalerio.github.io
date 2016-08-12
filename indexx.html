@@ -15,7 +15,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script type="application/javascript">
-        var c, naf;
+        var c, naf, sx, gv, nva;
         function calculaGMB(s,i,P,g,n){
             var gmb=0;
             if (s==1){
@@ -72,14 +72,21 @@
                 var sexo = 0;
                 var gest = 0;
                 var nome = document.form.pNome.value;
+                $("#pnRNome").html(nome);
                 var idade = document.form.pIdade.value;
+                $("#pnRIdade").html(idade);
                 naf =  document.form.pNivel.value;
+                if (naf == 1) { nva = "Leve" }  else if (naf == 2) { nva = "Moderada" }  else if (naf == 3) { nva = "Intensa" }
+                $("#pnRNivel").html(nva);
                 var peso = document.form.pMassa.value;
+                $("#pnRMassa").html(peso);
                 var altura = document.form.pEstrutura.value;
-                if (document.form.pSexMasculino.checked) { sexo = 1 }
-                else if (document.form.pSexFeminino.checked) { sexo = 2 }
-                if (document.form.pGravidaS.checked) { gest = 1 }
-                else if (document.form.pGravidaN.checked) { gest = 2 }
+                $("#pnREstatura").html(altura);
+                if (document.form.pSexMasculino.checked) { sexo = 1; sx = "Masculino"; }
+                else if (document.form.pSexFeminino.checked) { sexo = 2; sx = "Feminino"; }
+                $("#pnRSexo").html(sx);
+                if (document.form.pGravidaS.checked) { gest = 1; gv = "Sim"; }
+                else if (document.form.pGravidaN.checked) { gest = 2; gv = "Não"; }
 
                 var imc = peso / (altura * altura);
                 if (imc < 18.5) {dimc = "Baixo peso";} else if (imc >= 18.5 && imc < 25) {dimc = "Peso Normal";} else if (imc >= 25 && imc < 30) {dimc = "Pré-obesidade";} else if (imc >= 30 && imc < 35) {dimc = "Obesidade Grau I";}else if (imc >= 35 && imc < 40) {dimc = "Obesidade Grau II";}else if (imc > 40) {dimc = "Obesidade Grau III";}
@@ -393,23 +400,64 @@
             </div>
         </form>
 
+        <br/>
+
         <div class="form-custom plBG4 collapse" id="pnResposta">
             <table class="table table-striped">
+                <thead> <tr> <th class="text-md-center" colspan="4"> Dados Básicos </th> </tr> </thead>
+                <tbody>
+                <tr> <td class="text-md-center" colspan="4"> <span id="pnRNome"> NOME </span> </td> </tr>
+                <tr>
+                    <th class="col-md-3 text-md-right" scope="row"> <span> Idade: </span> </th>
+                    <td class="col-md-3 text-md-left"> <span id="pnRIdade"> IDADE </span> </td>
+                    <th class="col-md-3 text-md-right" scope="row"> <span> Sexo: </span> </th>
+                    <td class="col-md-3 text-md-left"> <span id="pnRSexo"> SEXO </span> </td> </tr>
+                <tr>
+                    <th class="col-md-3 text-md-right" scope="row"> <span> Massa corporal: </span> </th>
+                    <td class="col-md-3 text-md-left"> <span id="pnRMassa"> MASSA </span> </td>
+                    <th class="col-md-3 text-md-right" scope="row"> <span> Estatura: </span> </th>
+                    <td class="col-md-3 text-md-left"> <span id="pnREstatura"> ESTATURA </span> </td> </tr>
+                <tr>
+                    <th class="col-md-6 text-md-right" colspan="2"> <span> Nível de atividade Física: </span> </th>
+                    <td class="col-md-6 text-md-left" colspan="2"> <span id="pnRNivel"> NÍVEL </span> </td>
+                </tr>
+                </tbody>
+            </table> <br/>
+
+            <table class="table table-striped">
+                <thead> <tr> <th class="text-md-center" colspan="3"> Projeções </th> </tr> </thead>
                 <tbody>
                 <tr>
-                    <th class="col-md-4 text-md-center" scope="row">GET (Gasto Energético Total):</th>
+                    <th class="col-md-4 text-md-right" scope="row">GET (Gasto Energético Total):</th>
                     <td class="col-md-4 text-md-center"> <span id="cGET"> - </span> </td>
-                    <td class="col-md-4 text-md-center"> <span> - </span> </td> </tr>
+                    <td class="col-md-4 text-md-left"> <span> </span> </td> </tr>
                 <tr>
-                    <th class="col-md-4 text-md-center" scope="row">GMB (Gasto Metabólico Basal):</th>
+                    <th class="col-md-4 text-md-right" scope="row">GMB (Gasto Metabólico Basal):</th>
                     <td class="col-md-4 text-md-center"> <span id="cGMB"> - </span> </td>
-                    <td class="col-md-4 text-md-center"> <span> - </span> </td> </tr>
+                    <td class="col-md-4 text-md-left"> <span> </span> </td> </tr>
                 <tr>
-                    <th class="col-md-4 text-md-center" scope="row">IMC (Índice de Massa Corporal):</th>
+                    <th class="col-md-4 text-md-right" scope="row">IMC (Índice de Massa Corporal):</th>
                     <td class="col-md-4 text-md-center"> <span id="cIMC"> - </span> </td>
-                    <td class="col-md-4 text-md-center"> <span id="dIMC"> - </span> </td> </tr>
+                    <td class="col-md-4 text-md-left"> <span id="dIMC"> - </span> </td> </tr>
                 </tbody>
-            </table>
+            </table> <br/>
+
+            <table class="table table-striped">
+                <thead> <tr> <th class="text-md-center" colspan="2"> Dados Nutricionais </th> </tr> </thead>
+                <tbody>
+                <tr>
+                    <th class="col-md-6 text-md-right"> <span> Índice de Massa Corporal desejado: </span> </th>
+                    <td class="col-md-6 text-md-left"> <span id="pnRIndice"> - </span> </td> </tr>
+                <tr>
+                    <th class="col-md-6 text-md-right"> <span> Peso desejado: </span> </th>
+                    <td class="col-md-6 text-md-left"> <span id="pnRPeso"> - </span> </td> </tr>
+                <tr>
+                    <th class="col-md-6 text-md-right"> <span> Quantidade de quilos a perder: </span> </th>
+                    <td class="col-md-6 text-md-left"> <span id="pnRQuilos"> - </span> </td>
+                </tr>
+
+                </tbody>
+            </table> <br/>
 
             <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
         </div>
