@@ -64,7 +64,6 @@
             if (verificaCalcula()) {
                 $('#pnFormulario').collapse('hide');
                 $('#pn04').collapse('hide');
-                $('#formulario').collapse('hide');
                 $('#pnResposta').collapse('show');
                 $('#pn06').collapse('show');
                 r = 1;
@@ -95,7 +94,6 @@
         function recalculo(){
             r = 0;
             $('#pnFormulario').collapse('show');
-            $('#formulario').collapse('show');
             $('#pnResposta').collapse('hide');
             $('#pn06').collapse('hide');
         }
@@ -305,7 +303,7 @@
     </nav>
     <div class="container" align="center">
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>
-        <form class="collapse form-custom plBG9" method="post" name="form" id="formulario">
+        <form class="form-custom plBG9" method="post" name="form" id="formulario">
             <div id="pnFormulario" class="collapse">
                 <div id="pn01">
                     <label class="labPer" for="pNome">Nome</label> <br/>
