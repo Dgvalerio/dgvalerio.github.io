@@ -79,9 +79,9 @@
                 if (naf == 1) { nva = "Leve" }  else if (naf == 2) { nva = "Moderada" }  else if (naf == 3) { nva = "Intensa" }
                 $("#pnRNivel").html(nva);
                 var peso = document.form.pMassa.value;
-                $("#pnRMassa").html(peso);
+                $("#pnRMassa").html(peso + " Kg");
                 var altura = document.form.pEstrutura.value;
-                $("#pnREstatura").html(altura);
+                $("#pnREstatura").html(altura + " m");
                 if (document.form.pSexMasculino.checked) { sexo = 1; sx = "Masculino"; }
                 else if (document.form.pSexFeminino.checked) { sexo = 2; sx = "Feminino"; }
                 $("#pnRSexo").html(sx);
@@ -402,9 +402,9 @@
 
         <br/>
 
-        <div class="form-custom plBG4 collapse" id="pnResposta">
+        <div class="result-custom pC9 crPreta collapse" id="pnResposta">
             <table class="table table-striped">
-                <thead> <tr> <th class="text-md-center" colspan="4"> Dados Básicos </th> </tr> </thead>
+                <thead class="thead-inverse"> <tr> <th class="text-md-center" colspan="4"> Dados Básicos </th> </tr> </thead>
                 <tbody>
                 <tr> <td class="text-md-center" colspan="4"> <span id="pnRNome"> NOME </span> </td> </tr>
                 <tr>
@@ -425,7 +425,7 @@
             </table> <br/>
 
             <table class="table table-striped">
-                <thead> <tr> <th class="text-md-center" colspan="3"> Projeções </th> </tr> </thead>
+                <thead class="thead-inverse"> <tr> <th class="text-md-center" colspan="3"> Projeções </th> </tr> </thead>
                 <tbody>
                 <tr>
                     <th class="col-md-4 text-md-right" scope="row">GET (Gasto Energético Total):</th>
@@ -443,7 +443,7 @@
             </table> <br/>
 
             <table class="table table-striped">
-                <thead> <tr> <th class="text-md-center" colspan="2"> Dados Nutricionais </th> </tr> </thead>
+                <thead class="thead-inverse"> <tr> <th class="text-md-center" colspan="2"> Dados Nutricionais </th> </tr> </thead>
                 <tbody>
                 <tr>
                     <th class="col-md-6 text-md-right"> <span> Índice de Massa Corporal desejado: </span> </th>
@@ -460,6 +460,7 @@
             </table> <br/>
 
             <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
+            <br/>
         </div>
     </div> <br/>
 
