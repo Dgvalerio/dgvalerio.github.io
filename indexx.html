@@ -64,8 +64,12 @@
             if (verificaCalcula()) {
                 $('#pnFormulario').collapse('hide');
                 $('#pn04').collapse('hide');
+
                 $('#pnResposta').collapse('show');
                 $('#pn06').collapse('show');
+
+                $('#formulario').css({"background-color":"rgba(0,0,0,0)","transition":"all .5s"});
+
                 r = 1;
                 var sexo = 0;
                 var gest = 0;
@@ -78,6 +82,7 @@
                 else if (document.form.pSexFeminino.checked) { sexo = 2 }
                 if (document.form.pGravidaS.checked) { gest = 1 }
                 else if (document.form.pGravidaN.checked) { gest = 2 }
+
                 var imc = peso / (altura * altura);
                 if (imc < 18.5) {dimc = "Baixo peso";} else if (imc >= 18.5 && imc < 25) {dimc = "Peso Normal";} else if (imc >= 25 && imc < 30) {dimc = "Pré-obesidade";} else if (imc >= 30 && imc < 35) {dimc = "Obesidade Grau I";}else if (imc >= 35 && imc < 40) {dimc = "Obesidade Grau II";}else if (imc > 40) {dimc = "Obesidade Grau III";}
                 $("#cIMC").html(parseFloat(imc.toFixed(2))); $("#dIMC").html(dimc);
@@ -85,10 +90,7 @@
                 $("#cGMB").html(parseFloat(gmb.toFixed(2)));
                 var GET = calculaGET(gmb, sexo, idade, naf);
                 $("#cGET").html(parseFloat(GET.toFixed(2)));
-            }
-            else {
-                alert("Preencha todos os campos obrigatórios!")
-            }
+            } else { alert("Preencha todos os campos obrigatórios!") }
         }
 
         function recalculo(){
@@ -96,6 +98,7 @@
             $('#pnFormulario').collapse('show');
             $('#pnResposta').collapse('hide');
             $('#pn06').collapse('hide');
+            $('#formulario').css({"background-color":"#263238","transition":"all .5s"});
         }
 
         setTimeout(function(){document.getElementById('gif').style.opacity = '0';
@@ -296,11 +299,8 @@
 <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
     <img id="gif" src="ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
 </div>
-
 <div id="content" style="display: none">
-    <nav class="navbar-y">
-        <div class="plBG5 navbar-y"><div style="display: none;" id="loader"> CARREGANDO </div>  <br/> <br/> <br/> <br/> <br/> </div>
-    </nav>
+    <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>
         <form class="form-custom plBG9" method="post" name="form" id="formulario">
@@ -395,7 +395,6 @@
                 </div> <br/>
             </div>
         </form>
-        <br/>
 
         <div class="form-custom plBG4 collapse" id="pnResposta">
             <table class="table table-striped">
@@ -419,7 +418,7 @@
                 <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
             </div>
         </div>
-    </div>
+    </div> <br/>
 
 </div>
 </body>
