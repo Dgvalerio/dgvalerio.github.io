@@ -65,10 +65,8 @@
                 $('#pnFormulario').collapse('hide');
                 $('#pn04').collapse('hide');
 
-                $('#pnResposta').collapse('show');
-                $('#pn06').collapse('show');
-
-                $('#formulario').css({"background-color":"rgba(0,0,0,0)","transition":"all .5s"});
+                $('#formulario').css({"opacity":"0","transition":"all .5s"});
+                $('#pnResposta').collapse('show').css({"opacity":"1","transition":"all .5s"});
 
                 r = 1;
                 var sexo = 0;
@@ -96,9 +94,8 @@
         function recalculo(){
             r = 0;
             $('#pnFormulario').collapse('show');
-            $('#pnResposta').collapse('hide');
-            $('#pn06').collapse('hide');
-            $('#formulario').css({"background-color":"#263238","transition":"all .5s"});
+            $('#pnResposta').collapse('hide').css({"opacity":"0","transition":"all .5s"});
+            $('#formulario').css({"opacity":"1","transition":"all .5s"});
         }
 
         setTimeout(function(){document.getElementById('gif').style.opacity = '0';
@@ -414,9 +411,7 @@
                 </tbody>
             </table>
 
-            <div class="collapse" id="pn06">
-                <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
-            </div>
+            <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
         </div>
     </div> <br/>
 
