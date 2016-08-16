@@ -16,6 +16,19 @@
 
     <script type="application/javascript">
         var c, naf, pNV, pGS, pG, pID;
+        function opPn(idd) {
+            if (idd == "paraImc") {
+                $('#opPn').css({"background-color": "#546E7A", "transition": "all .5s"});
+                $('#paraImc').collapse('show');
+                $('#paraPeso').collapse('hide');
+            } else if (idd == "paraPeso") {
+                $('#opPn').css({"background-color": "#6D4C41", "transition": "all .5s"});
+                $('#paraPeso').collapse('show');
+                $('#paraImc').collapse('hide');
+            }
+
+        }
+
         function calculaGMB(s,i,P,g,n){
             var gmb=0;
             if (s==1){
@@ -112,7 +125,11 @@
         setTimeout(function(){(setInterval('forms()',200))},3000);
         var stat = 0;
         var r = 0;
-        $(document).ready(function () { $('#formulario').collapse('show'); $('#pnFormulario').collapse('show'); });
+        /*$(document).ready(function () { $('#formulario').collapse('show'); $('#pnFormulario').collapse('show'); });*/
+        $(document).ready(function () {
+            $('#formulario').collapse('show'); $('#pnFormulario').collapse('show');
+            $('#opPn').collapse('show'); $('#pn05').collapse('show');
+            $('#forImc').collapse('show'); $('#forPeso').collapse('show');});
 
         function verificaSexo() {
             if ($("#pSexFeminino").is(':checked')) {
@@ -375,6 +392,25 @@
             </div>
 
             <div class="collapse" id="pn05">
+
+                <div class="card">
+                    <div class="card-header plBG7" onclick="opPn('paraImc')">
+                        <label for="pImcDes" id="forImc" class="labPer collapse">IMC desejado (Kg/m<sup>2</sup>)</label> </div>
+                    <div class="card-block" id="opPn">
+                        <div class="form-group collapse" id="paraImc"> <div class="input-group">
+                                <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
+                                <div class="input-group-addon">Kg/m<sup>2</sup></div>
+                            </div> </div>
+                        <div class="form-group collapse" id="paraPeso"> <div class="input-group">
+                                <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
+                                <div class="input-group-addon">Kg</div>
+                            </div> </div>
+                    </div>
+                    <div class="card-footer plM7" onclick="opPn('paraPeso')">
+                        <label for="pPesoDes" id="forPeso" class="labPer collapse">Peso desejado (em Kg)</label> </div>
+                </div>
+
+                <!--
                 <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
                 <div class="form-group">
                     <div class="input-group">
@@ -389,7 +425,7 @@
                         <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
                         <div class="input-group-addon">Kg</div>
                     </div>
-                </div> <br/>
+                </div> <br/> -->
             </div>
         </form>
 
