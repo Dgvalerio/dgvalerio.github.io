@@ -9,24 +9,25 @@
     <meta charset="UTF-8">
     <title> C.A.F.E. </title>
     <link rel="shortcut icon" href="ext/logo_miniatura.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="print" href="bootstrap.css">
+    <LINK rel="stylesheet" type="text/css" href="bootstrap.css">
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <script type="application/javascript">
-        var c, naf, pNV, pGS, pG, pID;
-        function opPn(idd) {
-            if (idd == "paraImc") {
-                $('#opPn').css({"background-color": "#546E7A", "transition": "all .5s"});
-                $('#paraImc').collapse('show');
-                $('#paraPeso').collapse('hide');
-            } else if (idd == "paraPeso") {
-                $('#opPn').css({"background-color": "#6D4C41", "transition": "all .5s"});
-                $('#paraPeso').collapse('show');
-                $('#paraImc').collapse('hide');
-            }
+        var naf;
 
+        function imcPeso(idd) {
+            $('#pnPesoImc').css({"padding" : "10px", "transition" : "all .5s"});
+
+            if (idd == "fID") {
+                $('#fID').collapse('show');
+                $('#fPD').collapse('hide');
+            } else if (idd == "fPD") {
+                $('#fPD').collapse('show');
+                $('#fID').collapse('hide');
+            }
         }
 
         function calculaGMB(s,i,P,g,n){
@@ -84,24 +85,26 @@
                 r = 1;
                 var sexo = 0, gest = 0;
                 var nome = $('#pNome').val();   $("#pnRNome").html(nome);
-                var idade = $('#pIdade').val(); $("#pnRIdade").html(idade);
+                var idade = $('#pIdade').val(); $("#pnRIdade").html(idade + " anos");
                 naf =  $('#pNivel').val(); if (naf == 1) { nva = "Leve" }  else if (naf == 2) { nva = "Moderada" }  else if (naf == 3) { nva = "Intensa" }
                 $("#pnRNivel").html(nva);
                 var peso = $('#pMassa').val(); $("#pnRMassa").html(peso + " Kg");
                 var altura = $('#pEstrutura').val(); $("#pnREstatura").html(altura + " m");
-                if ($("#pSexMasculino").is(':checked')) { sexo = 1; sx = "Masculino"; }
+                if ($("#pSexMasculino").is(':checked')) { sexo = 1; sx = "Masculino"; $('#cGest').css({"display":"none"}); }
                 else if ($("#pSexFeminino").is(':checked')) { sexo = 2; sx = "Feminino"; }
                 $("#pnRSexo").html(sx);
-                if ($("#pGravidaS").is(':checked')) { gest = 1; gv = "Sim"; }
-                else if ($("#pGravidaN").is(':checked')) { gest = 2; gv = "Não"; }
+                if ($("#pGravidaS").is(':checked')) { gest = 1; gv = "Sim"; $('#cGest').css({"display":"block"}); }
+                else if ($("#pGravidaN").is(':checked')) { gest = 2; gv = "Não"; $('#cGest').css({"display":"none"}); }
 
                 var imc = peso / (altura * altura);
                 if (imc < 18.5) {dimc = "Baixo peso";} else if (imc >= 18.5 && imc < 25) {dimc = "Peso Normal";} else if (imc >= 25 && imc < 30) {dimc = "Pré-obesidade";} else if (imc >= 30 && imc < 35) {dimc = "Obesidade Grau I";}else if (imc >= 35 && imc < 40) {dimc = "Obesidade Grau II";}else if (imc > 40) {dimc = "Obesidade Grau III";}
-                $("#cIMC").html(parseFloat(imc.toFixed(2))); $("#dIMC").html(dimc);
+                $("#cIMC").html(parseFloat(imc.toFixed(2)));
+                $("#dIMC").html(dimc);
                 var gmb = calculaGMB(sexo, idade, peso, gest, naf);
                 $("#cGMB").html(parseFloat(gmb.toFixed(2)));
                 var GET = calculaGET(gmb, sexo, idade, naf);
                 $("#cGET").html(parseFloat(GET.toFixed(2)));
+
             } else { alert("Preencha todos os campos obrigatórios!") }
         }
 
@@ -125,11 +128,7 @@
         setTimeout(function(){(setInterval('forms()',200))},3000);
         var stat = 0;
         var r = 0;
-        /*$(document).ready(function () { $('#formulario').collapse('show'); $('#pnFormulario').collapse('show'); });*/
-        $(document).ready(function () {
-            $('#formulario').collapse('show'); $('#pnFormulario').collapse('show');
-            $('#opPn').collapse('show'); $('#pn05').collapse('show');
-            $('#forImc').collapse('show'); $('#forPeso').collapse('show');});
+        $(document).ready(function () { $('#formulario').collapse('show'); $('#pnFormulario').collapse('show'); });
 
         function verificaSexo() {
             if ($("#pSexFeminino").is(':checked')) {
@@ -307,16 +306,22 @@
                     stat=0;
             }
         }
+
+        function Imprime() {
+            window.print();
+        }
+
     </script>
 </head>
 <body class="plBG7"> <!--ext/anim.gif-->
-<div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
+ <!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
     <img id="gif" src="" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
-</div>
+</div> -->
 <div id="content" style="display: none">
     <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
         <!-- <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>-->
+        <div id="pnNImprime" class="hidden-print">
         <form class="form-custom plBG9" method="post" name="form" id="formulario">
             <div id="pnFormulario" class="collapse">
                 <div id="pn01">
@@ -360,7 +365,7 @@
                     </div> <br/>
 
                     <div class="collapse" id="pnGravida">
-                        <label class="labPer">Grávida</label> <br/>
+                        <label class="labPer">Gestante</label> <br/>
                         <label class="custom-control custom-radio">
                             <input id="pGravidaS" name="pGravida" type="radio" value="opGra1" class="custom-control-input">
                             <span class="custom-control-indicator"></span>
@@ -392,46 +397,28 @@
             </div>
 
             <div class="collapse" id="pn05">
+                <label for="pImcDes" class="labPer" onclick="imcPeso('fID')">IMC desejado (Kg/m<sup>2</sup>)</label>
+                <div id="pnPesoImc">
+                    <div> <div class="form-group m-a-0 collapse" id="fID">
+                        <div class="input-group">
+                            <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
+                            <div class="input-group-addon">Kg/m<sup>2</sup></div>
+                        </div> </div> </div>
 
-                <div class="card">
-                    <div class="card-header plBG7" onclick="opPn('paraImc')">
-                        <label for="pImcDes" id="forImc" class="labPer collapse">IMC desejado (Kg/m<sup>2</sup>)</label> </div>
-                    <div class="card-block" id="opPn">
-                        <div class="form-group collapse" id="paraImc"> <div class="input-group">
-                                <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
-                                <div class="input-group-addon">Kg/m<sup>2</sup></div>
-                            </div> </div>
-                        <div class="form-group collapse" id="paraPeso"> <div class="input-group">
-                                <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
-                                <div class="input-group-addon">Kg</div>
-                            </div> </div>
-                    </div>
-                    <div class="card-footer plM7" onclick="opPn('paraPeso')">
-                        <label for="pPesoDes" id="forPeso" class="labPer collapse">Peso desejado (em Kg)</label> </div>
+                    <div> <div class="form-group m-a-0 collapse" id="fPD">
+                        <div class="input-group">
+                            <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
+                            <div class="input-group-addon">Kg</div>
+                        </div> </div> </div>
                 </div>
-
-                <!--
-                <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
-                        <div class="input-group-addon">Kg/m<sup>2</sup></div>
-                    </div>
-                </div> <br/>
-
-                <label for="pPesoDes" class="labPer">Peso desejado (em Kg)</label>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
-                        <div class="input-group-addon">Kg</div>
-                    </div>
-                </div> <br/> -->
+                <label for="pPesoDes" class="labPer" onclick="imcPeso('fPD')">Peso desejado (em Kg)</label>
             </div>
         </form>
 
         <br/>
-
+        </div>
         <div class="result-custom pC9 crPreta collapse" id="pnResposta">
+            <div id="pnImprime">
             <table class="table table-striped">
                 <thead class="thead-inverse"> <tr> <th class="text-md-center" colspan="4"> Dados Básicos </th> </tr> </thead>
                 <tbody>
@@ -450,6 +437,7 @@
                     <th class="col-md-6 text-md-right" colspan="2"> <span> Nível de atividade Física: </span> </th>
                     <td class="col-md-6 text-md-left" colspan="2"> <span id="pnRNivel"> NÍVEL </span> </td>
                 </tr>
+                <th class="text-md-center" scope="row" style="display: none" id="cGest"> <span>Gestante</span> </th>
                 </tbody>
             </table> <br/>
 
@@ -487,12 +475,19 @@
 
                 </tbody>
             </table> <br/>
+                </div>
 
-            <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
-            <br/>
-        </div>
+            <div align="center" class="p-x-1 hidden-print">
+                <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular/Modificar dados</button>
+                <br/>
+                <div align="center" class="p-x-3">
+                    <button id="btnPrint" class="btn btn-primary btn-lg col-md-5 m-x-2" type="button" onclick="Imprime()">Imprimir</button>
+                    <button id="btnGPDF" class="btn btn-primary btn-lg col-md-5 m-x-2" type="button" onclick="">Gerar PDF</button>
+                </div>
+                </div>
+            <br/> <br/> <br/>
+            </div>
     </div> <br/>
-
 </div>
 </body>
 </html>
