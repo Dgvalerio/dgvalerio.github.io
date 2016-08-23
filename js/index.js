@@ -6,9 +6,11 @@ function imcPeso(idd) {
     if (idd == "fID") {
         $('#fID').collapse('show');
         $('#fPD').collapse('hide');
+        document.getElementById('pPesoDes').value = "";
     } else if (idd == "fPD") {
         $('#fPD').collapse('show');
         $('#fID').collapse('hide');
+        document.getElementById('pImcDes').value = "";
     }
 }
 
@@ -58,36 +60,46 @@ function calculaGET(gmb,s,i,n){
 
 function calculo(){
     if (verificaCalcula()) {
-        $('#pnFormulario').collapse('hide');
-        $('#pn04').collapse('hide');
-
-        $('#formulario').css({"opacity":"0","transition":"all .5s"});
-        $('#pnResposta').collapse('show').css({"opacity":"1","transition":"all .5s"});
-
-        r = 1;
-        var sexo = 0, gest = 0;
-        var nome = $('#pNome').val();   $("#pnRNome").html(nome);
-        var idade = $('#pIdade').val(); $("#pnRIdade").html(idade + " anos");
-        naf =  $('#pNivel').val(); if (naf == 1) { nva = "Leve" }  else if (naf == 2) { nva = "Moderada" }  else if (naf == 3) { nva = "Intensa" }
-        $("#pnRNivel").html(nva);
-        var peso = $('#pMassa').val(); $("#pnRMassa").html(peso + " Kg");
-        var altura = $('#pEstrutura').val(); $("#pnREstatura").html(altura + " m");
-        if ($("#pSexMasculino").is(':checked')) { sexo = 1; sx = "Masculino"; $('#cGest').css({"display":"none"}); }
-        else if ($("#pSexFeminino").is(':checked')) { sexo = 2; sx = "Feminino"; }
-        $("#pnRSexo").html(sx);
-        if ($("#pGravidaS").is(':checked')) { gest = 1; gv = "Sim"; $('#cGest').css({"display":"block"}); }
-        else if ($("#pGravidaN").is(':checked')) { gest = 2; gv = "Não"; $('#cGest').css({"display":"none"}); }
-
-        var imc = peso / (altura * altura);
-        if (imc < 18.5) {dimc = "Baixo peso";} else if (imc >= 18.5 && imc < 25) {dimc = "Peso Normal";} else if (imc >= 25 && imc < 30) {dimc = "Pré-obesidade";} else if (imc >= 30 && imc < 35) {dimc = "Obesidade Grau I";}else if (imc >= 35 && imc < 40) {dimc = "Obesidade Grau II";}else if (imc > 40) {dimc = "Obesidade Grau III";}
-        $("#cIMC").html(parseFloat(imc.toFixed(2)));
-        $("#dIMC").html(dimc);
-        var gmb = calculaGMB(sexo, idade, peso, gest, naf);
-        $("#cGMB").html(parseFloat(gmb.toFixed(2)));
-        var GET = calculaGET(gmb, sexo, idade, naf);
-        $("#cGET").html(parseFloat(GET.toFixed(2)));
-
+        if (document.getElementById('pPesoDes').value == "" && document.getElementById('pImcDes').value == ""){
+            var ipd = confirm("Tem certeza que não deseja calcular IMC/Peso desejado?");
+            if (ipd==true){
+                calcular()
+            }
+        }
+        else{
+            calcular()
+        }
     } else { alert("Preencha todos os campos obrigatórios!") }
+}
+
+function calcular(){
+    $('#pnFormulario').collapse('hide');
+    $('#pn04').collapse('hide');
+    $('#formulario').css({"opacity":"0","transition":"all .5s"});
+    $('#pnResposta').collapse('show').css({"opacity":"1","transition":"all .5s"});
+
+    r = 1;
+    var sexo = 0, gest = 0;
+    var nome = $('#pNome').val();   $("#pnRNome").html(nome);
+    var idade = $('#pIdade').val(); $("#pnRIdade").html(idade + " anos");
+    naf =  $('#pNivel').val(); if (naf == 1) { nva = "Leve" }  else if (naf == 2) { nva = "Moderada" }  else if (naf == 3) { nva = "Intensa" }
+    $("#pnRNivel").html(nva);
+    var peso = $('#pMassa').val(); $("#pnRMassa").html(peso + " Kg");
+    var altura = $('#pEstrutura').val(); $("#pnREstatura").html(altura + " m");
+    if ($("#pSexMasculino").is(':checked')) { sexo = 1; sx = "Masculino"; $('#cGest').css({"display":"none"}); }
+    else if ($("#pSexFeminino").is(':checked')) { sexo = 2; sx = "Feminino"; }
+    $("#pnRSexo").html(sx);
+    if ($("#pGravidaS").is(':checked')) { gest = 1; gv = "Sim"; $('#cGest').css({"display":"block"}); }
+    else if ($("#pGravidaN").is(':checked')) { gest = 2; gv = "Não"; $('#cGest').css({"display":"none"}); }
+
+    var imc = peso / (altura * altura);
+    if (imc < 18.5) {dimc = "Baixo peso";} else if (imc >= 18.5 && imc < 25) {dimc = "Peso Normal";} else if (imc >= 25 && imc < 30) {dimc = "Pré-obesidade";} else if (imc >= 30 && imc < 35) {dimc = "Obesidade Grau I";}else if (imc >= 35 && imc < 40) {dimc = "Obesidade Grau II";}else if (imc > 40) {dimc = "Obesidade Grau III";}
+    $("#cIMC").html(parseFloat(imc.toFixed(2)));
+    $("#dIMC").html(dimc);
+    var gmb = calculaGMB(sexo, idade, peso, gest, naf);
+    $("#cGMB").html(parseFloat(gmb.toFixed(2)));
+    var GET = calculaGET(gmb, sexo, idade, naf);
+    $("#cGET").html(parseFloat(GET.toFixed(2)));
 }
 
 function recalculo(){
@@ -280,6 +292,13 @@ function forms(){
             if (document.getElementById("pSexMasculino").checked) { $('#pn03').collapse('show') }
             if (document.getElementById("pSexFeminino").checked && (document.getElementById('pGravidaS').checked || document.getElementById('pGravidaN').checked)) { $('#pn03').collapse('show'); }
             $("#pNivel").prop("disabled", false);
+            if (document.getElementById('pNivel').value != "") { stat = 6; }
+            verificaCalcula();
+            dadosEspeciais();
+            verificaSexo();
+            break;
+        case 6:
+            $('#pn05').collapse('show');
             verificaCalcula();
             dadosEspeciais();
             verificaSexo();
