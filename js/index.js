@@ -7,10 +7,14 @@ function imcPeso(idd) {
         $('#fID').collapse('show');
         $('#fPD').collapse('hide');
         document.getElementById('pPesoDes').value = "";
+
+        $('#pnPesoImc').css({"background-color": "#37474F", "transition" : "all .5s"});
     } else if (idd == "fPD") {
         $('#fPD').collapse('show');
         $('#fID').collapse('hide');
         document.getElementById('pImcDes').value = "";
+
+        $('#pnPesoImc').css({"background-color": "#1565C0", "transition" : "all .5s"});
     }
 }
 
@@ -62,13 +66,9 @@ function calculo(){
     if (verificaCalcula()) {
         if (document.getElementById('pPesoDes').value == "" && document.getElementById('pImcDes').value == ""){
             var ipd = confirm("Tem certeza que não deseja calcular IMC/Peso desejado?");
-            if (ipd==true){
-                calcular()
-            }
+            if (ipd==true){ calcular() }
         }
-        else{
-            calcular()
-        }
+        else{ calcular() }
     } else { alert("Preencha todos os campos obrigatórios!") }
 }
 
@@ -149,101 +149,51 @@ function verificaCalcula() {
     if (document.getElementById('pNome').value != "" && document.getElementById('pIdade').value != "" && r==0) {
         if (document.getElementById('pSexFeminino').checked) {
             if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != "" && (document.getElementById('pGravidaS').checked || document.getElementById('pGravidaN').checked)){
-                $('#pn04').collapse('show');
-                return true;
+                $('#pn04').collapse('show'); return true;
             }
-            else {
-                $('#pn04').collapse('hide');
-                return false;
-            }
+            else { $('#pn04').collapse('hide'); return false; }
         }
         if (document.getElementById('pSexMasculino').checked) {
             if (document.getElementById('pMassa').value != "" && document.getElementById('pEstrutura').value != "" && document.getElementById('pNivel').value != ""){
-                $('#pn04').collapse('show');
-                return true;
+                $('#pn04').collapse('show'); return true;
             }
-            else {
-                $('#pn04').collapse('hide');
-                return false;
-            }
+            else { $('#pn04').collapse('hide'); return false; }
         }
     }
-    else {
-        $('#pn04').collapse('hide');
-        return false;
-    }
+    else { $('#pn04').collapse('hide'); return false; }
 }
 
 function dadosEspeciais() {
     if (document.getElementById("pIdade").value != "") {
         var i = document.getElementById("pIdade").value;
         var c = "0";
-        if (i >= 13 && i <= 15) {
-            c = "13"
-        }
-        else if (i >= 16 && i <= 19) {
-            c = "5"
-        }
-        else if (i >= 40 && i <= 49) {
-            c = "-5"
-        }
-        else if (i >= 50 && i <= 59) {
-            c = "-10"
-        }
-        else if (i >= 60 && i <= 70) {
-            c = "-20"
-        }
-        else if (i > 70) {
-            c = "-30"
-        }
-        if (c != "0") {
-            $('#smCorrecao').collapse('show');
-            $("#spCorrecao").html(c + "%");
-        }
-        else {
-            $('#smCorrecao').collapse('hide');
-        }
+        if (i >= 13 && i <= 15) { c = "13" }
+        else if (i >= 16 && i <= 19) { c = "5" }
+        else if (i >= 40 && i <= 49) { c = "-5" }
+        else if (i >= 50 && i <= 59) { c = "-10" }
+        else if (i >= 60 && i <= 70) { c = "-20" }
+        else if (i > 70) { c = "-30" }
+        if (c != "0") { $('#smCorrecao').collapse('show'); $("#spCorrecao").html(c + "%"); }
+        else { $('#smCorrecao').collapse('hide'); }
     }
     if (document.getElementById("pSexMasculino").checked) {
         var naf = document.getElementById("pNivel").value;
         var c = 0;
-        if (naf == 1) {
-            c = "1,55"
-        }
-        else if (naf == 2) {
-            c = "1,78"
-        }
-        else if (naf == 3) {
-            c = "2,10"
-        }
-        if (c != "0") {
-            $('#smFator').collapse('show');
-            $("#spFator").html(c);
-        }
-        else {
-            $('#smFator').collapse('hide');
-        }
+        if (naf == 1) { c = "1,55" }
+        else if (naf == 2) { c = "1,78" }
+        else if (naf == 3) { c = "2,10" }
+        if (c != "0") { $('#smFator').collapse('show'); $("#spFator").html(c);}
+        else { $('#smFator').collapse('hide'); }
     }
 
     if (document.getElementById("pSexFeminino").checked) {
         var naf = document.getElementById("pNivel").value;
         var c = 0;
-        if (naf == 1) {
-            c = "1,56"
-        }
-        else if (naf == 2) {
-            c = "1,64"
-        }
-        else if (naf == 3) {
-            c = "1,82"
-        }
-        if (c != "0") {
-            $('#smFator').collapse('show');
-            $("#spFator").html(c);
-        }
-        else {
-            $('#smFator').collapse('hide');
-        }
+        if (naf == 1) { c = "1,56" }
+        else if (naf == 2) { c = "1,64" }
+        else if (naf == 3) { c = "1,82" }
+        if (c != "0") { $('#smFator').collapse('show'); $("#spFator").html(c); }
+        else { $('#smFator').collapse('hide'); }
     }
 }
 
@@ -303,11 +253,8 @@ function forms(){
             dadosEspeciais();
             verificaSexo();
             break;
-        default:
-            stat=0;
+        default: stat=0;
     }
 }
 
-function Imprime() {
-    window.print();
-}
+function Imprime() { window.print(); }
