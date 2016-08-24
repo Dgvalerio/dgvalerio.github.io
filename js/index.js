@@ -1,20 +1,51 @@
 var naf;
-
+var statd = 0;
 function imcPeso(idd) {
-    $('#pnPesoImc').css({"padding" : "10px", "transition" : "all .5s"});
-
+    $('#pnPesoImc').css({"padding": "10px", "transition": "all .5s"});
     if (idd == "fID") {
-        $('#fID').collapse('show');
-        $('#fPD').collapse('hide');
-        document.getElementById('pPesoDes').value = "";
-
-        $('#pnPesoImc').css({"background-color": "#37474F", "transition" : "all .5s"});
+        switch (statd) {
+            case 0:
+                $('#fID').collapse('show');
+                $('#pnPesoImc').css({"background-color": "#37474F", "transition": "all .5s"});
+                statd = 1;
+                break;
+            case 1:
+                $('#fID').collapse('hide');
+                $('#pnPesoImc').collapse('hide');
+                $('#pnPesoImc').css({"padding":"0"});
+                document.getElementById('pImcDes').value = "";
+                statd = 0;
+                break;
+            case 2:
+                $('#fID').collapse('show');
+                $('#fPD').collapse('hide');
+                document.getElementById('pPesoDes').value = "";
+                $('#pnPesoImc').css({"background-color": "#37474F", "transition": "all .5s"});
+                statd = 1;
+                break;
+        }
     } else if (idd == "fPD") {
-        $('#fPD').collapse('show');
-        $('#fID').collapse('hide');
-        document.getElementById('pImcDes').value = "";
-
-        $('#pnPesoImc').css({"background-color": "#1565C0", "transition" : "all .5s"});
+        switch (statd) {
+            case 0:
+                $('#fPD').collapse('show');
+                $('#pnPesoImc').css({"background-color": "#1565C0", "transition": "all .5s"});
+                statd = 2;
+                break;
+            case 1:
+                $('#fPD').collapse('show');
+                $('#fID').collapse('hide');
+                document.getElementById('pImcDes').value = "";
+                $('#pnPesoImc').css({"background-color": "#1565C0", "transition": "all .5s"});
+                statd = 2;
+                break;
+            case 2:
+                $('#fPD').collapse('hide');
+                $('#pnPesoImc').collapse('hide');
+                $('#pnPesoImc').css({"padding":"0"});
+                document.getElementById('pPesoDes').value = ""
+                statd = 0;
+                break;
+        }
     }
 }
 
@@ -100,6 +131,42 @@ function calcular(){
     $("#cGMB").html(parseFloat(gmb.toFixed(2)));
     var GET = calculaGET(gmb, sexo, idade, naf);
     $("#cGET").html(parseFloat(GET.toFixed(2)));
+
+    var imcd = $('#pImcDes').val();
+    var pesod = $('#pPesoDes').val();
+    var saldo = 0;
+    if (imcd==""&&pesod==""){
+        $('#pnDadosNut').collapse('hide');
+    }
+    else {
+        $('#pnDadosNut').collapse('show');
+        if (pesod != 0) {
+            imcd = pesod / (altura*altura);
+            pesod = imcd * (altura*altura);
+            alert("imcd="+imcd +"/ pesod="+pesod);
+        }
+        else if (imcd != 0) {
+            pesod = imcd * (altura*altura);
+            imcd = pesod / (altura*altura);
+            alert("imcd="+imcd +"/ pesod="+pesod);
+        }
+        $("#pnRIndice").html(parseFloat(imcd.toFixed(2)) + " Kg/m²");
+        $("#pnRPeso").html(parseFloat(pesod.toFixed(2)) + " Kg");
+
+        if (pesod > peso) {
+            saldo = pesod - peso;
+            $("#pnOpQuilos").html("Quantidade de quilos a ganhar: ");
+            $("#pnRQuilos").html(parseFloat(saldo.toFixed(2)) + "Kg");
+        }
+        else if (pesod < peso) {
+            saldo = peso - pesod;
+            $("#pnOpQuilos").html("Quantidade de quilos a perder: ");
+            $("#pnRQuilos").html(parseFloat(saldo.toFixed(2)) + "Kg");
+        }
+        else if ((pesod==peso) || (imcd==imc)) {
+            $("#pnOpQuilos").html("Já atingiu o peso desejado!");
+        }
+    }
 }
 
 function recalculo(){
