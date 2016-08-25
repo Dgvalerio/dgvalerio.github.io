@@ -143,7 +143,7 @@ function calcular(){
         if (pesod != 0) {
             imcd = pesod / (altura*altura);
             pesod = imcd * (altura*altura);
-            alert("imcd="+imcd +"/ pesod="+pesod);
+
         }
         else if (imcd != 0) {
             pesod = imcd * (altura*altura);
