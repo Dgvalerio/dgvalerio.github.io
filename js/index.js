@@ -17,24 +17,22 @@ setTimeout(function(){(setInterval('forms()',200))},3000);
 
 $(document).ready(function () { $('#formulario').collapse('show');$('#pnNImprime').collapse('show'); });
 
-$(document).keypress(function(e) {
-    if(e.which == 13) $('#btnCalc').click();
-});
+$(document).keypress(function(e) { if(e.which == 13) $('#btnCalc').click(); });
 
 function imcPeso(idd) {
-    $('#pnPesoImc').css({"padding": "10px", "transition": "all .5s"});
+    $('#pnPesoImc').css({"padding": "10px", "transition": "all .5s", "border-top": "none"});
     if (idd == "fID") {
         switch (statd) {
             case 0:
                 $('#fID').collapse('show');
-                $('#pnPesoImc').css({"background-color": "#37474F", "transition": "all .5s"});
-                $('#pnIMCD').css({"background-color": "#37474F", "transition": "all .5s"});
+                $('#pnPesoImc').css({"background-color": "#9E9E9E", "transition": "all .5s"});
+                $('#pnIMCD').css({"background-color": "#9E9E9E", "transition": "all .5s"});
                 statd = 1;
                 break;
             case 1:
                 $('#fID').collapse('hide');
                 $('#pnPesoImc').collapse('hide');
-                $('#pnPesoImc').css({"padding":"0"});
+                $('#pnPesoImc').css({"padding":"0", "border-top": "1px solid #9E9E9E"});
                 document.getElementById('pImcDes').value = "";
                 $('#pnIMCD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 0;
@@ -43,8 +41,8 @@ function imcPeso(idd) {
                 $('#fID').collapse('show');
                 $('#fPD').collapse('hide');
                 document.getElementById('pPesoDes').value = "";
-                $('#pnPesoImc').css({"background-color": "#37474F", "transition": "all .5s"});
-                $('#pnIMCD').css({"background-color": "#37474F", "transition": "all .5s"});
+                $('#pnPesoImc').css({"background-color": "#9E9E9E", "transition": "all .5s"});
+                $('#pnIMCD').css({"background-color": "#9E9E9E", "transition": "all .5s"});
                 $('#pnPesoD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 1;
                 break;
@@ -69,7 +67,7 @@ function imcPeso(idd) {
             case 2:
                 $('#fPD').collapse('hide');
                 $('#pnPesoImc').collapse('hide');
-                $('#pnPesoImc').css({"padding":"0"});
+                $('#pnPesoImc').css({"padding":"0", "border-top": "1px solid #9E9E9E"});
                 document.getElementById('pPesoDes').value = "";
                 $('#pnPesoD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 0;
