@@ -1,5 +1,25 @@
+var stat = 0;
+var r = 0;
 var naf;
 var statd = 0;
+
+setTimeout(function(){
+    $('#gif').css({"opacity":"0","transition":"all 1s"});
+    $('#preloader').css({"opacity":"0","transition":"all 1s"});
+    $('#content').css({"display":"block"});
+    setTimeout(function(){
+        $('#gif').css({"display":"none"});
+        $('#preloader').css({"display":"none"});
+    },100);
+},3800);
+
+setTimeout(function(){(setInterval('forms()',200))},3000);
+
+$(document).ready(function () { $('#formulario').collapse('show');$('#pnNImprime').collapse('show'); });
+
+$(document).keypress(function(e) {
+    if(e.which == 13) $('#btnCalc').click();
+});
 
 function imcPeso(idd) {
     $('#pnPesoImc').css({"padding": "10px", "transition": "all .5s"});
@@ -184,21 +204,6 @@ function recalculo(){
     $('#pnResposta').collapse('hide').css({"opacity":"0","transition":"all .5s"});
     $('#formulario').css({"opacity":"1","transition":"all .5s"});
 }
-
-setTimeout(function(){
-    $('#gif').css({"opacity":"0","transition":"all 1s"});
-    $('#preloader').css({"opacity":"0","transition":"all 1s"});
-    $('#content').css({"display":"block"});
-    setTimeout(function(){
-        $('#gif').css({"display":"none"});
-        $('#preloader').css({"display":"none"});
-    },100);
-},3800);
-
-setTimeout(function(){(setInterval('forms()',200))},3000);
-var stat = 0;
-var r = 0;
-$(document).ready(function () { $('#formulario').collapse('show');$('#pnNImprime').collapse('show'); });
 
 function verificaSexo() {
     if ($("#pSexFeminino").is(':checked')) {
