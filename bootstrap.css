@@ -6459,7 +6459,7 @@ a.text-danger:focus, a.text-danger:hover {
 
 .labPer { font-weight: bold; font-size: 14pt; }
 
-#pnPesoImc { border-top: 1px solid white; border-bottom: 1px solid white; }
+#pnPesoImc { border-top: 1px solid #37474F; border-bottom: 1px solid #1565C0; }
 
 #btnPrint { float: left;  } #btnGPDF  { float: right; }
 
