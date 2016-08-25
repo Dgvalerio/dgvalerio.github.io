@@ -18,7 +18,7 @@ $senha	= $_POST ["pPass"];	//atribuição do campo "senha" vindo do formulário 
 $mestre	= $_POST ["pHipPass"];	//atribuição do campo "senha" vindo do formulário para variavel
 //Gravando no banco de dados !
 
-if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users where nome = 'MESTRE'")) { $sql = "insert into cafe_users (nome, senha) values ('$nome', '$senha');"; if (mysqli_query($link, $sql)) { echo "<script type='text/javascript'> alert('Cadastro bem sucedido!'); </script> "; } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; } }
+if ( $nome != '') { $sql = "insert into cafe_users (nome, senha) values ('$nome', '$senha');"; if (mysqli_query($link, $sql)) { echo "<script type='text/javascript'> alert('Cadastro bem sucedido!'); </script> "; } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; } }
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +98,7 @@ if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users whe
                         <br/>
                         <div class="collapse" id="btnDiv">
                             <button id="cad" class="btn btn-primary col-md-5 btn-lg btnLog" type="button">Cadastrar</button>
-                            <button id="ent" class="btn btn-primary col-md-5 btn-lg btnLog f-right" type="submit">Entrar</button>
+                            <button id="ent" class="btn btn-primary col-md-5 btn-lg btnLog f-right" type="button">Entrar</button>
                         </div>
                         <br/>
                         <button id="ini" class="btn btn-primary btn-block btn-lg m-x-0" type="button" onclick="location.href='../index.html';">Iniciar aplicação sem fazer login</button>
