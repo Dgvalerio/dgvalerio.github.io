@@ -1,5 +1,6 @@
 var naf;
 var statd = 0;
+
 function imcPeso(idd) {
     $('#pnPesoImc').css({"padding": "10px", "transition": "all .5s"});
     if (idd == "fID") {
@@ -7,6 +8,7 @@ function imcPeso(idd) {
             case 0:
                 $('#fID').collapse('show');
                 $('#pnPesoImc').css({"background-color": "#37474F", "transition": "all .5s"});
+                $('#pnIMCD').css({"background-color": "#37474F", "transition": "all .5s"});
                 statd = 1;
                 break;
             case 1:
@@ -14,6 +16,7 @@ function imcPeso(idd) {
                 $('#pnPesoImc').collapse('hide');
                 $('#pnPesoImc').css({"padding":"0"});
                 document.getElementById('pImcDes').value = "";
+                $('#pnIMCD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 0;
                 break;
             case 2:
@@ -21,6 +24,8 @@ function imcPeso(idd) {
                 $('#fPD').collapse('hide');
                 document.getElementById('pPesoDes').value = "";
                 $('#pnPesoImc').css({"background-color": "#37474F", "transition": "all .5s"});
+                $('#pnIMCD').css({"background-color": "#37474F", "transition": "all .5s"});
+                $('#pnPesoD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 1;
                 break;
         }
@@ -28,21 +33,25 @@ function imcPeso(idd) {
         switch (statd) {
             case 0:
                 $('#fPD').collapse('show');
-                $('#pnPesoImc').css({"background-color": "#1565C0", "transition": "all .5s"});
+                $('#pnPesoImc').css({"background-color": "#78909C", "transition": "all .5s"});
+                $('#pnPesoD').css({"background-color": "#78909C", "transition": "all .5s"});
                 statd = 2;
                 break;
             case 1:
                 $('#fPD').collapse('show');
                 $('#fID').collapse('hide');
                 document.getElementById('pImcDes').value = "";
-                $('#pnPesoImc').css({"background-color": "#1565C0", "transition": "all .5s"});
+                $('#pnPesoImc').css({"background-color": "#78909C", "transition": "all .5s"});
+                $('#pnPesoD').css({"background-color": "#78909C", "transition": "all .5s"});
+                $('#pnIMCD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 2;
                 break;
             case 2:
                 $('#fPD').collapse('hide');
                 $('#pnPesoImc').collapse('hide');
                 $('#pnPesoImc').css({"padding":"0"});
-                document.getElementById('pPesoDes').value = ""
+                document.getElementById('pPesoDes').value = "";
+                $('#pnPesoD').css({"background-color": "#263238", "transition": "all .5s"});
                 statd = 0;
                 break;
         }
@@ -104,9 +113,8 @@ function calculo(){
 }
 
 function calcular(){
-    $('#pnFormulario').collapse('hide');
+    $('#pnNImprime').collapse('hide');
     $('#pn04').collapse('hide');
-
     $('#formulario').css({"opacity":"0","transition":"all .5s"});
     $('#pnResposta').collapse('show').css({"opacity":"1","transition":"all .5s"});
 
@@ -172,7 +180,7 @@ function calcular(){
 
 function recalculo(){
     r = 0;
-    $('#pnFormulario').collapse('show');
+    $('#pnNImprime').collapse('show');
     $('#pnResposta').collapse('hide').css({"opacity":"0","transition":"all .5s"});
     $('#formulario').css({"opacity":"1","transition":"all .5s"});
 }
@@ -190,7 +198,7 @@ setTimeout(function(){
 setTimeout(function(){(setInterval('forms()',200))},3000);
 var stat = 0;
 var r = 0;
-$(document).ready(function () { $('#formulario').collapse('show'); $('#pnFormulario').collapse('show'); });
+$(document).ready(function () { $('#formulario').collapse('show');$('#pnNImprime').collapse('show'); });
 
 function verificaSexo() {
     if ($("#pSexFeminino").is(':checked')) {
