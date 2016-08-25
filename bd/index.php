@@ -33,35 +33,42 @@ if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users whe
     <title> C.A.F.E. </title>
     <link rel="shortcut icon" href="../ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="../bootstrap.css">
-    <LINK rel="stylesheet" type="text/css" href="../bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../bootstrap.css">
     <script src="../js/jquery-3.1.0.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/index.js"></script>
 
-
     <script>
         $(function () {
-            $("#pPass").prop("disabled", true);
-            $('#pn00').collapse('show');
-            $('#pn01').collapse('show');
+            $('#log').collapse('show');
 
-            $('#cad').click(function () {
-                $('#pn00').collapse('hide');
-                $('#pn01').collapse('hide');
-                $('#pn02').collapse('show');
+            $('#log').click(function () {
+                $('#pnBd01').collapse('show');
+                $('#log').collapse('hide');
             });
 
-            $('#vol').click(function () {
-                $('#pn02').collapse('hide');
-                $('#pn01').collapse('show');
-                $('#pn00').collapse('show');
-            });
+            $('#ini').click(function () { location.href='../index.html'; });
         });
 
         setTimeout(function(){(setInterval('formLog()',200))},3000);
 
-        function formLog() { if ($('#pUser').val() == "" ) { $("#pPass").prop("disabled", true); } else if ($('#pUser').val() != "" ) { $("#pPass").prop("disabled", false); if ($("#pPass").val() != "") { $('#btnDiv').collapse('show'); } } }
+        function formLog() {
+            if ($('#pUser').val() == "" ) {
+
+                $("#pPass").prop("disabled", true);
+
+            } else if ($('#pUser').val() != "" ) {
+
+                $("#pPass").prop("disabled", false);
+
+                if ($("#pPass").val() != "") {
+
+                    $('#btnDiv').collapse('show');
+
+                }
+            }
+        }
     </script>
 </head>
 <body class="plBG7"> <!--ext/anim.gif  style="display: none" location.href='index.php'; -->
@@ -77,16 +84,30 @@ if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users whe
         <form class="form-custom plBG9" method="post" action="index.php">
         <div id="pnFormulario" class="collapse">
 
-<div class="" id="pn00">
+<div class="" id="pnBd00">
 <br/>
 
-<button id="log" class="btn btn-primary col-md-5 btn-lg btnLog" type="button">
-    Login
-</button>
+<div class="pnBtnLog">
+    <div class="collapse" id="pnBd01">
+        <label class="labPer" for="pUser">Nome de Usuário</label> <br/>
+        <input name="pUser" id="pUser" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/> <br/>
+
+        <label class="labPer" for="pPass">Senha</label> <br/>
+        <input name="pPass" id="pPass" type="password" placeholder="Digite sua senha" class="form-control">
+        <br/>
+    </div>
+
+    <button id="log" class="btn btn-primary btn-block btn-lg btnLog collapse" type="button">Login</button>
+    <div class="collapse" id="btnDiv"><br/>
+        <button id="cad" class="btn btn-primary col-md-5 btn-lg btnLog" type="button">Cadastrar</button>
+        <button id="ent" class="btn btn-primary col-md-5 btn-lg btnLog f-right" type="submit">Entrar</button><br/><br/>
+    </div>
+
+
+</div>
 
 <br/>
-<button id="ini" class="btn btn-primary btn-block btn-lg m-x-0" type="button"
-        onclick="location.href='../index.html';">
+<button id="ini" class="btn btn-primary btn-block btn-lg" type="button">
     Iniciar aplicação sem fazer login
 </button>
 </div>
