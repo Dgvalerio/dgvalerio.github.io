@@ -24,9 +24,8 @@
     <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="ext/logo_transp_branco.png" width="100"> </div> </nav>
-        <div id="pnNImprime" class="hidden-print">
+        <div id="pnNImprime" class="collapse hidden-print">
             <form class="form-custom plBG9" method="post" name="form" id="formulario">
-                <div id="pnFormulario" class="collapse">
                     <div id="pn01">
                         <label class="labPer" for="pNome">Nome</label> <br/>
                         <input  id="pNome" type="text" placeholder="Digite seu nome" class="form-control" title="Nome"/> <br/>
@@ -93,11 +92,22 @@
                         <small class="left collapse" id="smFator">Fator de atividade Física: <span id="spFator"> ~ </span> </small>
                         <br/>
                     </div>
-                </div>
 
                 <div class="collapse" id="pn05">
-                    <label for="pImcDes" class="labPer" onclick="imcPeso('fID')">IMC desejado (Kg/m<sup>2</sup>)</label> <sup class="f-right">*Os campos abaixo são opcionais</sup>
-                    <div id="pnPesoImc">
+
+                    <!--Div pnFormulario removida-->
+                    <!--Local do sup alterado-->
+
+                    <sup class="f-right">*Os campos abaixo são opcionais, clique para preencher</sup>
+                    <br/>
+
+                    <!--DIV pnIMCD adicionada-->
+                    <!--Evento onclick alterado de pImcDes para pnIMCD-->
+                    <div id="pnIMCD" onclick="imcPeso('fID')">
+                    <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
+                    </div>
+                    <!--border da pnPesoIMC alterado (temporário, não mecho no bootstrap)-->
+                    <div id="pnPesoImc" style="border-bottom: none">
                         <div> <div class="form-group m-a-0 collapse" id="fID">
                             <div class="input-group">
                                 <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
@@ -110,7 +120,11 @@
                                 <div class="input-group-addon">Kg</div>
                             </div> </div> </div>
                     </div>
-                    <label for="pPesoDes" class="labPer" onclick="imcPeso('fPD')">Peso desejado (em Kg)</label>
+                    <!--DIV pnPesoD adicionada-->
+                    <!--Evento onclick alterado de pPesoDes para pnPesoD-->
+                    <div id="pnPesoD" onclick="imcPeso('fPD')">
+                    <label for="pPesoDes" class="labPer">Peso desejado (em Kg)</label>
+                    </div>
                 </div><br/>
 
                 <div class="collapse" id="pn04">
