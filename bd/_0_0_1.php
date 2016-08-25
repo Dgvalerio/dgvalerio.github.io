@@ -74,26 +74,39 @@ if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users whe
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../ext/logo_transp_branco.png" width="100"> </div> </nav>
 
         <div id="" class="">
-        <form class="form-custom plBG9" method="post" action="index.php">
-        <div id="pnFormulario" class="collapse">
+            <form class="form-custom plBG9" method="post" action="index.php">
+                <div id="pnFormulario" class="collapse">
 
-<div class="" id="pn00">
-<br/>
+                    <div class="collapse" id="pn01">
+                        <label class="labPer" for="pUser">Nome de Usuário</label> <br/>
+                        <input name="pUser" id="pUser" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/> <br/>
 
-<button id="log" class="btn btn-primary col-md-5 btn-lg btnLog" type="button">
-    Login
-</button>
+                        <label class="labPer" for="pPass">Senha</label> <br/>
+                        <input name="pPass" id="pPass" type="password" placeholder="Digite sua senha" class="form-control">
+                        <br/>
+                    </div>
 
-<br/>
-<button id="ini" class="btn btn-primary btn-block btn-lg m-x-0" type="button"
-        onclick="location.href='../index.html';">
-    Iniciar aplicação sem fazer login
-</button>
-</div>
+                    <div class="collapse" id="pn02">
+                        <label class="labPer" for="pPass">Senha mestre (para efetuar o cadastro)</label> <br/>
+                        <input id="pHipPass" name="pHipPass" type="password" placeholder="Digite sua senha" class="form-control">
+                        <br/>
+                        <button id="vol" class="btn btn-danger col-md-5 btn-lg" type="button">Voltar</button>
+                        <button id="con" class="btn btn-success col-md-5 btn-lg f-right" type="submit">Confirmar</button><br/><br/>
+                    </div>
+
+                    <div class="collapse"  id="pn00">
+                        <br/>
+                        <div class="collapse" id="btnDiv">
+                            <button id="cad" class="btn btn-primary col-md-5 btn-lg btnLog" type="button">Cadastrar</button>
+                            <button id="ent" class="btn btn-primary col-md-5 btn-lg btnLog f-right" type="submit">Entrar</button>
+                        </div>
+                        <br/>
+                        <button id="ini" class="btn btn-primary btn-block btn-lg m-x-0" type="button" onclick="location.href='../index.html';">Iniciar aplicação sem fazer login</button>
+                    </div>
+                    <br/>
+                </div>
+            </form>
             <br/>
-        </div>
-        </form>
-        <br/>
         </div>
 
     </div> <br/>
