@@ -106,6 +106,7 @@ function calculo(){
 function calcular(){
     $('#pnFormulario').collapse('hide');
     $('#pn04').collapse('hide');
+
     $('#formulario').css({"opacity":"0","transition":"all .5s"});
     $('#pnResposta').collapse('show').css({"opacity":"1","transition":"all .5s"});
 
@@ -148,7 +149,7 @@ function calcular(){
         else if (imcd != 0) {
             pesod = imcd * (altura*altura);
             imcd = pesod / (altura*altura);
-            alert("imcd="+imcd +"/ pesod="+pesod);
+
         }
         $("#pnRIndice").html(parseFloat(imcd.toFixed(2)) + " Kg/m²");
         $("#pnRPeso").html(parseFloat(pesod.toFixed(2)) + " Kg");
