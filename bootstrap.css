@@ -1705,6 +1705,7 @@ pre code {
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #eceeef;
+  border-top: none;
 }
 
 .table tbody + tbody {
