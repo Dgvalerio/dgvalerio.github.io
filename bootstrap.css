@@ -6415,6 +6415,13 @@ a.text-danger:focus, a.text-danger:hover {
 }
 
 @media print {
+  .result-custom {
+    padding: 0;
+    -webkit-border-radius: 0.25rem !important;
+    -moz-border-radius: 0.25rem !important;
+    border-radius: 0.25rem !important;
+    text-shadow: 0 1px 3px rgba(119, 119, 119, 0) !important;
+  }
   .hidden-print {
     display: none !important;
   }
@@ -6441,6 +6448,16 @@ a.text-danger:focus, a.text-danger:hover {
     float: left !important;
     width: 25% !important;
   }
+  .col-md-4 {
+    float: left !important;
+    width: 33.333333% !important;
+  }
+  .col-md-6 {
+    float: left !important;
+    width: 50% !important;
+  }
+
+
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
