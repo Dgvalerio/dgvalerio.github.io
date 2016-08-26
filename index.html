@@ -28,10 +28,10 @@
             <form class="form-custom plBG9" method="post" name="form" id="formulario">
                     <div id="pn01">
                         <label class="labPer" for="pNome">Nome</label> <br/>
-                        <input  id="pNome" type="text" placeholder="Digite seu nome" class="form-control" title="Nome"/> <br/>
+                        <input  id="pNome" type="text" placeholder="Digite seu nome" class="form-control" title="Nome" maxlength="70" a/> <br/>
 
                         <label class="labPer" for="pIdade">Idade</label> <br/>
-                        <input id="pIdade" type="number" placeholder="0" min="0" class="form-control">
+                        <input id="pIdade" type="number" placeholder="0" min="0" max="150" class="form-control">
                         <small class="right collapse" id="smCorrecao">Correção do fator de atividade Física: <span id="spCorrecao"> ~ </span> <br/> </small> <br/>
 
                         <div id="pnSexo">
@@ -53,7 +53,7 @@
                         <label class="labPer" for="pMassa">Massa corporal</label>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="number" id="pMassa" placeholder="0" min="0" step="any" class="form-control">
+                                <input type="number" id="pMassa" placeholder="0" min="0" max="300" step="any" class="form-control">
                                 <div class="input-group-addon">Kg</div>
                             </div>
                         </div> <br/>
@@ -61,7 +61,7 @@
                         <label class="labPer" for="pEstrutura">Estatura</label>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="number" id="pEstrutura" placeholder="0" min="0" step="any" class="form-control">
+                                <input type="number" id="pEstrutura" placeholder="0" min="0" max="2,5" step="any" class="form-control">
                                 <div class="input-group-addon">m</div>
                             </div>
                         </div> <br/>
@@ -99,7 +99,7 @@
                     <div id="pnIMCD" onclick="imcPeso('fID')">
                     <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
                     </div>
-                    <!--border da pnPesoIMC alterado (temporário, não mecho no bootstrap)-->
+
                     <div id="pnPesoImc">
                         <div> <div class="form-group m-a-0 collapse" id="fID">
                             <div class="input-group">
@@ -109,7 +109,7 @@
 
                         <div> <div class="form-group m-a-0 collapse" id="fPD">
                             <div class="input-group">
-                                <input type="number" id="pPesoDes" placeholder="0" min="0" class="form-control">
+                                <input type="number" id="pPesoDes" placeholder="0" min="0" max="300" class="form-control">
                                 <div class="input-group-addon">Kg</div>
                             </div> </div> </div>
                     </div>
@@ -189,10 +189,7 @@
             <div align="center" class="p-x-1 hidden-print">
                 <button id="btnRecalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="recalculo()">Recalcular / Modificar dados</button>
                 <br/>
-                <div align="center" class="col-md-12">
-                    <button id="btnPrint" class="btn btn-primary btn-lg col-md-5 m-x-2" type="button" onclick="Imprime()">Imprimir</button>
-                    <button id="btnGPDF" class="btn btn-primary btn-lg col-md-5 m-x-2" type="button" onclick="">Gerar PDF</button>
-                </div>
+                    <button id="btnPrint" class="btn btn-primary btn-block btn-lg" type="button" onclick="Imprime()">Imprimir</button>
             </div>
             <br/> <br/> <br/>
         </div>
