@@ -127,7 +127,11 @@ function calculo(){
             if (ipd==true){ calcular() }
         }
         else{ calcular() }
-    } else { alert("Preencha todos os campos obrigatórios!") }
+    } else {
+        reset();
+        alertify.alert("Preencha todos os campos obrigatórios!");
+        return false;
+    }
 }
 
 function calcular(){

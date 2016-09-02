@@ -58,27 +58,33 @@
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav>
 
         <div id="" class="">
-            <form class="form-custom plBG9" method="post" action="index.php">
-                <div id="pnFormulario" class="">
 
-                    <div class="" id="pnBd00">
-                        <br/>
+<?php header("Content-Type: text/html; charset=UTF-8",true); $log = 0;
 
-                        <div class="pnBtnLog">
-                            <div class="collapse" id="pnBd01">
-                                <label class="labPer" for="pUser">Cadastro: Nome de Usuário</label> <br/>
-                                <input name="pUser" id="pUser" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/> <br/>
+/* Conexão */ $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
+/* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
 
-                                <label class="labPer" for="pPass">Senha</label> <br/>
-                                <input name="pPass" id="pPass" type="password" placeholder="Digite sua senha" class="form-control">
-                                <br/>
-                            </div>
+    $vnome	= $_POST ["pUser"];
+    $vsenha = $_POST ["pPass"];
 
-                            <button id="log" class="btn btn-primary btn-block btn-lg btnLog collapse" type="button">Login</button>
-                            <div class="collapse" id="btnDiv">
-                                <button id="enter" class="btn btn-primary btn-block btn-lg btnLog" type="button">Entre / Cadastre-se</button>
-                            </div>
-                        </div> <br/>
+            $result = mysqli_query($link, "select * from cafe_users"); if (!$result) { die('Invalid query: ' . mysqli_connect_error()); }
 
-                        <button id="ini" class="btn btn-primary btn-block btn-lg" type="button"> Iniciar aplicação sem fazer login </button>
-                    </div> <br/> </div> </form> <br/> </div> </div> <br/> </div> </body> </html>
+            while ($confere = mysqli_fetch_assoc($result) ) {
+                if ($confere['nome'] == $vnome) {
+                    if ($confere['senha'] == $vsenha) {
+                        $log = 1;
+                    }
+                } else {
+                    print(" <script> location.href='cad.php'; </script> ");
+                }
+
+            }
+
+            if ($log == 1) { print(" <h1 class='tit'> Uhuuuuuuuuuuuuuuuuu!!! </h1>
+                             <h1 class='tit'> Login feito com sucesso! </h1> "); }
+            else { print("<h1 class='tit'> Buaaaaaaaaaaaaaaaaaaaa!!! </h1>
+                  <h1 class='tit'> Erro no login! </h1>"); }
+
+            ?>
+
+<br/> </div> </div> <br/> </div> </body> </html>
