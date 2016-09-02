@@ -1,36 +1,13 @@
-<?php header("Content-Type: text/html; charset=UTF-8",true);
-
-/* Conexão */
-$link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
-/* Criação do Banco de Dados */
-$sql = 'create database if not exists `cafe_login` default character set utf8 collate utf8_general_ci;'; if (mysqli_query($link, $sql)) { echo ""; } else { echo 'Erro criando o banco de dados: ' . mysqli_connect_error() . "\n"; }
-/* Uso do Banco de Dados */
-$db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
-/* Criação da Tabela */
-$sql = 'create table if not exists cafe_users ( id int not null auto_increment, nome varchar(30), senha varchar(30), primary key(id)) default charset = utf8;'; if (mysqli_query($link, $sql)) { echo "\n"; } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; }
-
-$_POST ["pUser"] = isset ($_POST ["pUser"])? $_POST ["pUser"]:'';
-$_POST ["pPass"] = isset ($_POST ["pPass"])? $_POST ["pPass"]:'';
-$_POST ["pHipPass"] = isset ($_POST ["pHipPass"])? $_POST ["pHipPass"]:'';
-// RECEBENDO OS DADOS PREENCHIDOS DO FORMULÁRIO !
-$nome	= $_POST ["pUser"];	//atribuição do campo "nome" vindo do formulário para variavel
-$senha	= $_POST ["pPass"];	//atribuição do campo "senha" vindo do formulário para variavel
-$mestre	= $_POST ["pHipPass"];	//atribuição do campo "senha" vindo do formulário para variavel
-//Gravando no banco de dados !
-
-if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users where nome = 'MESTRE'")) { $sql = "insert into cafe_users (nome, senha) values ('$nome', '$senha');"; if (mysqli_query($link, $sql)) { echo "<script type='text/javascript'> alert('Cadastro bem sucedido!'); </script> "; } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; } }
-?>
-
 <!DOCTYPE html>
 <!-- REGRAS PARA ID'S
         - 1º Sempre começar com letras minúsculas;
-        - 2º Não são permitidos espaços nem acentos;
-        - 3º A primeira letra de cada palavra é maiúscula, só a primeira letra, independentemente de ser uma sigla ou não.
+         - 2º Não são permitidos espaços nem acentos;
+          - 3º A primeira letra de cada palavra é maiúscula, só a primeira letra, independentemente de ser uma sigla ou não.
 -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title> C.A.F.E. </title>
+    <title> ---- </title>
     <link rel="shortcut icon" href="../ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="../bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../bootstrap.css">
@@ -78,11 +55,11 @@ if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users whe
 <div id="content">
     <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
-        <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../ext/logo_transp_branco.png" width="100"> </div> </nav>
+        <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav>
 
         <div id="" class="">
-        <form class="form-custom plBG9" method="post" action="index.php">
-        <div id="pnFormulario" class="collapse">
+        <form class="form-custom plB8" method="post" action="confirma.php">
+        <div id="pnFormulario" class="">
 
 <div class="" id="pnBd00">
 <br/>
@@ -98,27 +75,10 @@ if ( $nome != '' && $mestre == mysqli_query($link, "select * from cafe_users whe
     </div>
 
     <button id="log" class="btn btn-primary btn-block btn-lg btnLog collapse" type="button">Login</button>
-    <div class="collapse" id="btnDiv"><br/>
-        <button id="cad" class="btn btn-primary col-md-5 btn-lg btnLog" type="button">Cadastrar</button>
-        <button id="ent" class="btn btn-primary col-md-5 btn-lg btnLog f-right" type="submit">Entrar</button><br/><br/>
+    <div class="collapse" id="btnDiv">
+        <button id="enter" class="btn btn-primary btn-block btn-lg btnLog" type="submit">Entre / Cadastre-se</button>
     </div>
+</div> <br/>
 
-
-</div>
-
-<br/>
-<button id="ini" class="btn btn-primary btn-block btn-lg" type="button">
-    Iniciar aplicação sem fazer login
-</button>
-</div>
-            <br/>
-        </div>
-        </form>
-        <br/>
-        </div>
-
-    </div> <br/>
-
-</div>
-</body>
-</html>
+<button id="ini" class="btn btn-primary btn-block btn-lg" type="button"> Iniciar aplicação sem fazer login </button>
+</div> <br/> </div> </form> <br/> </div> </div> <br/> </div> </body> </html>
