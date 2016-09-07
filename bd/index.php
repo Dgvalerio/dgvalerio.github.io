@@ -1,3 +1,14 @@
+<?php header("Content-Type: text/html; charset=UTF-8",true); $estado = 0;
+/* Conexão */ $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
+/* Criação do Banco de Dados */ $sql = 'create database if not exists `cafe_login` default character set utf8 collate utf8_general_ci;'; if (mysqli_query($link, $sql)) { echo ""; } else { echo 'Erro criando o banco de dados: ' . mysqli_connect_error() . "\n"; }
+/* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
+/* Criação da Tabela */ $sql = ' create table if not exists cafe_users ( id int not null auto_increment, usuario varchar(30), nome varchar(40), senha varchar(30), primary key(id) ) default charset = utf8;';
+if (mysqli_query($link, $sql)) { echo "\n"; } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; }
+$result = mysqli_query($link, "select * from cafe_users where usuario = 'Mestre';"); if (!$result) {}
+while ($confere = mysqli_fetch_assoc($result) ) { if ($confere['usuario'] == 'Mestre') {$estado = 1; } else { } }
+if ($estado == 0) { $sql = "insert into cafe_users (usuario, nome, senha) values ('Mestre', 'Super Mestre', 'mister_carter2121');"; if (mysqli_query($link, $sql)) { } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; } }
+?>
+
 <!DOCTYPE html>
 <!-- REGRAS PARA ID'S
         - 1º Sempre começar com letras minúsculas;
@@ -48,10 +59,7 @@
         }
     </script>
 </head>
-<body class="plBG7"> <!--ext/anim.gif  style="display: none" location.href='index.php'; -->
-<!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
-    <img id="gif" src="../ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
-</div> -->
+<body class="plBG7">
 <div id="content">
     <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
@@ -66,7 +74,7 @@
 
 <div class="pnBtnLog">
     <div class="collapse" id="pnBd01">
-        <label class="labPer" for="pUser">Nome de Usuário</label> <br/>
+        <label class="labPer" for="pUser">Login</label> <br/>
         <input name="pUser" id="pUser" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/> <br/>
 
         <label class="labPer" for="pPass">Senha</label> <br/>

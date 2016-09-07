@@ -291,6 +291,7 @@ function forms(){
             $("#pMassa").prop("disabled", true);
             $("#pEstrutura").prop("disabled", true);
             $("#pNivel").prop("disabled", true);
+
             if (document.getElementById('pNome').value != "") { stat = 1; }
             verificaCalcula();
             break;
@@ -341,3 +342,18 @@ function forms(){
 }
 
 function Imprime() { window.print(); }
+
+function toPage(pg) {
+    switch (pg) {
+        case 1:
+            location.href = "index.php";
+            break;
+        case 2:
+            location.href = "cadastro.php";
+            break;
+        case 3:
+            location.href = "cad.php";
+            break;
+    }
+
+}

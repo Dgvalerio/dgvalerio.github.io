@@ -15,45 +15,9 @@
     <script src="../js/bootstrap.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/index.js"></script>
-
-    <script>
-        $(function () {
-            $('#log').collapse('show');
-
-            $('#log').click(function () {
-                $('#pnBd01').collapse('show');
-                $('#log').collapse('hide');
-            });
-
-            $('#ini').click(function () { location.href='../index.html'; });
-        });
-
-        setTimeout(function(){(setInterval('formLog()',200))},3000);
-
-        function formLog() {
-            if ($('#pUser').val() == "" ) {
-
-                $("#pPass").prop("disabled", true);
-
-            } else if ($('#pUser').val() != "" ) {
-
-                $("#pPass").prop("disabled", false);
-
-                if ($("#pPass").val() != "") {
-
-                    $('#btnDiv').collapse('show');
-
-                }
-            }
-        }
-    </script>
 </head>
-<body class="plBG7"> <!--ext/anim.gif  style="display: none" location.href='index.php'; -->
-<!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
-    <img id="gif" src="../ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
-</div> -->
+<body class="plBG7">
 <div id="content">
-    <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav>
 
@@ -64,26 +28,55 @@
 /* Conexão */ $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
 /* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
 
-    $vnome	= $_POST ["pUser"];
+    $vuser	= $_POST ["pUser"];
     $vsenha = $_POST ["pPass"];
 
             $result = mysqli_query($link, "select * from cafe_users"); if (!$result) { die('Invalid query: ' . mysqli_connect_error()); }
 
             while ($confere = mysqli_fetch_assoc($result) ) {
-                if ($confere['nome'] == $vnome) {
+                if ($confere['usuario'] == $vuser) {
                     if ($confere['senha'] == $vsenha) {
-                        $log = 1;
-                    }
-                } else {
-                    print(" <script> location.href='cad.php'; </script> ");
-                }
-
+                        print(" <script> location.href='../index.html'; </script> ");
+                    } else { $log = 3; }
+                } else { $log = 2; }
             }
 
-            if ($log == 1) { print(" <h1 class='tit'> Uhuuuuuuuuuuuuuuuuu!!! </h1>
-                             <h1 class='tit'> Login feito com sucesso! </h1> "); }
-            else { print("<h1 class='tit'> Buaaaaaaaaaaaaaaaaaaaa!!! </h1>
-                  <h1 class='tit'> Erro no login! </h1>"); }
+            switch ($log) {
+                case 1:
+                    break;
+                case 2:
+                    print "
+            
+                    <form class='form-custom plB8' method='post' action='cad.php'>
+                    
+                        <br/><h1>O Usuário <i>$vuser</i> não existe!</h1><br/>
+                        
+                        <button class='btn btn-primary col-md-5 btn-lg' type='submit'>Cadastrar <i>$vuser</i> </button>
+                    
+                        <button class='btn btn-primary col-md-5 btn-lg f-right' type='button' onclick='toPage(1)'/>Voltar</button> 
+                        
+                        <input type='text' value='$vuser' name='c_vuser' class='collapse'>
+                        <br/><br/>
+                    
+                    </form>
+            
+                    "; break;
+                case 3:
+                    print "
+
+                    <form class='form-custom card-danger' method='post' action='cad.php'>
+                    
+                        <br/><h1>A Senha de <i>$vuser</i> está errada!</h1><br/>
+                    
+                        <button class='btn btn-danger col-md-5 btn-lg f-right' type='button' onclick='toPage(1)'/>Voltar</button> 
+                        <br/><br/>
+                    
+                    </form>
+
+                    "; break;
+            }
+
+
 
             ?>
 

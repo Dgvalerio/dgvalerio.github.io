@@ -1,3 +1,7 @@
+<?php header("Content-Type: text/html; charset=UTF-8",true);
+$vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
+?>
+
 <!DOCTYPE html>
 <!-- REGRAS PARA ID'S
         - 1º Sempre começar com letras minúsculas;
@@ -15,38 +19,7 @@
     <script src="../js/bootstrap.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/index.js"></script>
-
-    <script>
-        $(function () {
-            $('#log').collapse('show');
-
-            $('#log').click(function () {
-                $('#pnBd01').collapse('show');
-                $('#log').collapse('hide');
-            });
-
-            $('#ini').click(function () { location.href='../index.html'; });
-        });
-
-        setTimeout(function(){(setInterval('formLog()',200))},3000);
-
-        function formLog() {
-            if ($('#pUser').val() == "" ) {
-
-                $("#pPass").prop("disabled", true);
-
-            } else if ($('#pUser').val() != "" ) {
-
-                $("#pPass").prop("disabled", false);
-
-                if ($("#pPass").val() != "") {
-
-                    $('#btnDiv').collapse('show');
-
-                }
-            }
-        }
-    </script>
+    <script src="../js/cad.js"></script>
 </head>
 <body class="plBG7"> <!--ext/anim.gif  style="display: none" location.href='index.php'; -->
 <!-- <div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
@@ -58,7 +31,7 @@
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav>
 
         <div id="" class="">
-            <form class="form-custom plBG9" method="post" action="index.php">
+            <form class="form-custom plB8" method="post" action="cadastra.php">
                 <div id="pnFormulario" class="">
 
                     <div class="" id="pnBd00">
@@ -66,17 +39,28 @@
 
                         <div class="pnBtnLog">
                             <div class="collapse" id="pnBd01">
-                                <label class="labPer" for="pUser">Cadastro: Nome de Usuário</label> <br/>
-                                <input name="pUser" id="pUser" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/> <br/>
-
+                                <label class="labPer" for="pUser">Login</label>
+                                <?php print(" <input value='$vuser' name='pUser' id='pUser' type='text' placeholder='Digite seu login' class='form-control' title='Nome'/> ");?>
+                                <br/>
+                                <label class="labPer" for="pNome">Nome do Usuário</label> <br/>
+                                <input name="pNome" id="pNome" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/>
+                                <br/>
                                 <label class="labPer" for="pPass">Senha</label> <br/>
                                 <input name="pPass" id="pPass" type="password" placeholder="Digite sua senha" class="form-control">
                                 <br/>
+                                <label class="labPer" for="pCPass">Repita a senha</label> <br/>
+                                <input name="pCPass" id="pCPass" type="password" placeholder="Repita sua senha" class="form-control">
+                                <div id="pnStatus"><span id="pStatus"></span></div>
+                                <div class="collapse" id="pnMaster">
+                                    <br/>
+                                    <label class="labPer" for="pMPass">Senha Master</label> <br/>
+                                    <input name="pMPass" id="pMPass" type="password" placeholder="Digite a senha Master" class="form-control">
+                                    <br/>
+                                </div>
                             </div>
 
-                            <button id="log" class="btn btn-primary btn-block btn-lg btnLog collapse" type="button">Login</button>
-                            <div class="collapse" id="btnDiv">
-                                <button id="enter" class="btn btn-primary btn-block btn-lg btnLog" type="button">Entre / Cadastre-se</button>
+                            <div class="pnBtnLog collapse" id="cadd">
+                                <button id="enter" class="btn btn-primary btn-block btn-lg btnLog" type="submit">Cadastre-se</button>
                             </div>
                         </div> <br/>
 

@@ -38,9 +38,9 @@
                 if (!$result) { die('Invalid query: ' . mysqli_connect_error()); }
 
                 echo"<table class='table table-striped pC9 crPreta'>";
-                echo"<thead class='thead-inverse'> <tr> <th class='col-md-2'>#</th> <th class='col-md-5'>Nome de usuário</th> <th class='col-md-5'>Senha</th> </tr> </thead> <tbody>";
+                echo"<thead class='thead-inverse'> <tr> <th class='col-md-3'>#</th> <th class='col-md-3'>Usuário</th> <th class='col-md-3'>Nome de usuário</th> <th class='col-md-3'>Senha</th> </tr> </thead> <tbody>";
                 while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atual e avança para o próximo registro
-                echo"<tr> <th class='col-md-2' scope='row'>$exibe[id]</th> <td class='col-md-5'>$exibe[nome]</td> <td class='col-md-5'>$exibe[senha]</td> </tr>";
+                echo"<tr> <th class='col-md-3' scope='row'>$exibe[id]</th> <td class='col-md-3'>$exibe[usuario]</td> <td class='col-md-3'>$exibe[nome]</td> <td class='col-md-3'>$exibe[senha]</td> </tr>";
                 }
                 echo"</tbody> </table>";
                 mysqli_close($link);
