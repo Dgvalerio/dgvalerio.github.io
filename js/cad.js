@@ -20,7 +20,7 @@ $(function () {
     });
 });
 
-setTimeout(function(){(setInterval('formLog()',200))},100);
+setInterval('formLog()',200);
 
 function formLog(){
     switch (estado) {
@@ -47,6 +47,8 @@ function formLog(){
             if ($('#pCPass').val() != "") { estado = 4; }
             break;
         case 4:
+            $('#pnMaster').collapse('hide');
+            $('#cadd').collapse('hide');
             if ($("#pPass").val() !=  $("#pCPass").val()) {
                 document.getElementById('pStatus').innerHTML = "As senhas não conferem!";
                 document.getElementById('pnStatus').style = "background-color: #ff0028";
@@ -58,11 +60,29 @@ function formLog(){
             }
             break;
         case 5:
+            $('#cadd').collapse('hide');
             $('#pnMaster').collapse('show');
+            if ($("#pPass").val() !=  $("#pCPass").val()) {
+                document.getElementById('pStatus').innerHTML = "As senhas não conferem!";
+                document.getElementById('pnStatus').style = "background-color: #ff0028";
+                estado = 4;
+
+            } else {
+                document.getElementById('pStatus').innerHTML = "As senhas conferem!";
+                document.getElementById('pnStatus').style = "background-color: #34cc33";
+            }
             if ($('#pMPass').val() != "") { estado = 6; }
             break;
         case 6:
-            $('#cadd').collapse('show');
+            if ($("#pPass").val() !=  $("#pCPass").val()) {
+                document.getElementById('pStatus').innerHTML = "As senhas não conferem!";
+                document.getElementById('pnStatus').style = "background-color: #ff0028";
+                estado = 4;
+            } else {
+                document.getElementById('pStatus').innerHTML = "As senhas conferem!";
+                document.getElementById('pnStatus').style = "background-color: #34cc33";
+                $('#cadd').collapse('show');
+            }
             break;
         default: estado=0;
     }
