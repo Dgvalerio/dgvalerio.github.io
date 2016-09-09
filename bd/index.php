@@ -40,7 +40,6 @@ if ($estado == 0) { $sql = "insert into cafe_users (usuario, nome, senha) values
         });
 
         setTimeout(function(){(setInterval('formLog()',200))},3000);
-
         function formLog() {
             if ($('#pUser').val() == "" ) {
 

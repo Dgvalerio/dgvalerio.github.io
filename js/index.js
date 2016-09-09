@@ -345,15 +345,9 @@ function Imprime() { window.print(); }
 
 function toPage(pg) {
     switch (pg) {
-        case 1:
-            location.href = "index.php";
-            break;
-        case 2:
-            location.href = "cadastro.php";
-            break;
-        case 3:
-            location.href = "cad.php";
-            break;
+        case 1: location.href = "index.php";    break;
+        case 2: location.href = "cadastro.php"; break;
+        case 3: location.href = "cad.php";      break;
     }
 
 }

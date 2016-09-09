@@ -31,12 +31,11 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
         <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav>
 
         <div id="" class="">
-            <form class="form-custom plB8" method="post" action="cadastra.php">
+            <form name="formcadastro" id="formcadastro" class="form-custom plB8" method="post" action="cadastra.php">
                 <div id="pnFormulario" class="">
 
                     <div class="" id="pnBd00">
                         <br/>
-
                         <div class="pnBtnLog">
                             <div class="collapse" id="pnBd01">
                                 <label class="labPer" for="pUser">Login</label>
@@ -48,6 +47,7 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
                                 <label class="labPer" for="pPass">Senha</label> <br/>
                                 <input name="pPass" id="pPass" type="password" placeholder="Digite sua senha" class="form-control">
                                 <br/>
+                                <sup class="f-right">*A Senha deve conter <b>letras</b>, <b>números</b> e no <b>mínimo 5 caracteres</b>!</sup> <br/>
                                 <label class="labPer" for="pCPass">Repita a senha</label> <br/>
                                 <input name="pCPass" id="pCPass" type="password" placeholder="Repita sua senha" class="form-control">
                                 <div id="pnStatus"><span id="pStatus"></span></div>
@@ -60,7 +60,7 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
                             </div>
 
                             <div class="pnBtnLog collapse" id="cadd">
-                                <button id="enter" class="btn btn-primary btn-block btn-lg btnLog" type="submit">Cadastre-se</button>
+                                <button id="btnEnter" class="btn btn-primary btn-block btn-lg btnLog" type="button">Cadastre-se</button>
                             </div>
                         </div> <br/>
 
