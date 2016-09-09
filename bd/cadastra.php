@@ -18,7 +18,7 @@
 </head>
 <body class="plBG7"> <div id="content"> <div class="container" align="center"> <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav> <div>
 
-<?php header("Content-Type: text/html; charset=UTF-8",true); $log = 0; $estado = 0; $tst_one = 0;
+<?php header("Content-Type: text/html; charset=UTF-8",true); $estado = 0; $tst_one = 0;
 /* Conexão */ $p_link = $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
 /* Criação do Banco de Dados */ $sql = 'create database if not exists `cafe_login` default character set utf8 collate utf8_general_ci;'; if (mysqli_query($link, $sql)) { echo ""; } else { echo 'Erro criando o banco de dados: ' . mysqli_connect_error() . "\n"; }
 /* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
@@ -60,10 +60,8 @@ while ($confere = mysqli_fetch_assoc($result) ) { if ($confere['usuario'] == 'Me
 if ($tst_one == 1) {
     $estado = 1;
     $result = mysqli_query($link, "select * from cafe_users where usuario like '$pLetra%';"); if (!$result) {}
-    while ($confere = mysqli_fetch_assoc($result) ) { if ($confere['usuario'] == $usuario)  { $estado = 2; } else { $estado = 1; } }
-} elseif ($tst_one == 2) {
-    $estado = 2;
-}
+    while ($confere = mysqli_fetch_assoc($result) ) { if ($confere['usuario'] == $usuario)  { $estado = 2; } }
+} elseif ($tst_one == 2) { $estado = 2; }
 
 if ($estado == 1) { cadastra($usuario, $nome, $senha, $link); } elseif ($estado == 2) { erro_cadastro(); }
 ?>
