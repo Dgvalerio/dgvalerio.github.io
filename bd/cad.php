@@ -53,7 +53,7 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
                                 <div id="pnStatus"><span id="pStatus"></span></div>
                                 <div class="collapse" id="pnMaster">
                                     <br/>
-                                    <label class="labPer" for="pMPass">Senha Master</label> <br/>
+                                    <label class="labPer" for="pMPass">Senha Mestre</label> <br/>
                                     <input name="pMPass" id="pMPass" type="password" placeholder="Digite a senha Master" class="form-control">
                                     <br/>
                                 </div>
