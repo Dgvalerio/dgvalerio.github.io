@@ -38,6 +38,13 @@
                     <button class='btn btn-danger btn-block btn-lg' type='button' onclick='toPage(1)'/>Voltar</button> 
                     <br/>
                 </form>
-            "; } else if ($tst_two == 1) { print(" <script> location.href='index2.php'; </script> "); }
+            "; } else if ($tst_two == 1) { print(" 
+                <form class='form-custom card-success' method='post' action='index2.php'> 
+                    <br/><h1>Logado como <i>$vuser</i> com sucesso!</h1><br/>
+                    <button class='btn btn-success btn-block btn-lg' type='submit' onclick='toPage(4)'/>OK</button> 
+                    <input type='text' value='$vuser' name='l_vuser' class='collapse'>
+                    <br/>
+                </form>
+             "); }
 
 ?> <br/> </div> </div> <br/> </div> </body> </html>

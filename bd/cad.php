@@ -1,13 +1,15 @@
-<?php header("Content-Type: text/html; charset=UTF-8",true);
+<?php header("Content-Type: text/html; charset=UTF-8",true); $estado = 0;
+/* Conexão */ $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
+/* Criação do Banco de Dados */ $sql = 'create database if not exists `cafe_login` default character set utf8 collate utf8_general_ci;'; if (mysqli_query($link, $sql)) { echo ""; } else { echo 'Erro criando o banco de dados: ' . mysqli_connect_error() . "\n"; }
+/* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
+/* Criação da Tabela */ $sql = ' create table if not exists cafe_users ( id int not null auto_increment, usuario varchar(30), nome varchar(40), senha varchar(30), primary key(id) ) default charset = utf8;';
+if (mysqli_query($link, $sql)) { echo "\n"; } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; }
+$result = mysqli_query($link, "select * from cafe_users where usuario = 'Mestre';"); if (!$result) {}
+while ($confere = mysqli_fetch_assoc($result) ) { if ($confere['usuario'] == 'Mestre') {$estado = 1; } else { } }
+if ($estado == 0) { $sql = "insert into cafe_users (usuario, nome, senha) values ('Mestre', 'Super Mestre', 'mister_carter2121');"; if (mysqli_query($link, $sql)) { } else { echo 'Erro: ' . mysqli_connect_error() . "\n"; } }
 $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
 ?>
-
 <!DOCTYPE html>
-<!-- REGRAS PARA ID'S
-        - 1º Sempre começar com letras minúsculas;
-         - 2º Não são permitidos espaços nem acentos;
-          - 3º A primeira letra de cada palavra é maiúscula, só a primeira letra, independentemente de ser uma sigla ou não.
--->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
