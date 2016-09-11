@@ -32,7 +32,7 @@
 <body>
 <div id="content">
     <div class="container" align="center">
-        <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../ext/logo_transp_branco.png" width="100"> </div> </nav>
+        <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../../ext/logo_transp_branco.png" width="100"> </div> </nav>
         <br/>
         <div class="result-custom pC9 crPreta" id="pnResposta">
 

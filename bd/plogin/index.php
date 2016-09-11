@@ -26,37 +26,6 @@ if ($estado == 0) { $sql = "insert into cafe_users (usuario, nome, senha) values
     <script src="../../js/bootstrap.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/index.js"></script>
-
-    <script>
-        $(function () {
-            $('#log').collapse('show');
-
-            $('#log').click(function () {
-                $('#pnBd01').collapse('show');
-                $('#log').collapse('hide');
-            });
-
-            $('#ini').click(function () { location.href='../index.html'; });
-        });
-
-        setTimeout(function(){(setInterval('formLog()',200))},3000);
-        function formLog() {
-            if ($('#pUser').val() == "" ) {
-
-                $("#pPass").prop("disabled", true);
-
-            } else if ($('#pUser').val() != "" ) {
-
-                $("#pPass").prop("disabled", false);
-
-                if ($("#pPass").val() != "") {
-
-                    $('#btnDiv').collapse('show');
-
-                }
-            }
-        }
-    </script>
 </head>
 <body class="plBG7">
 <div id="content">

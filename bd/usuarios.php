@@ -11,11 +11,6 @@
     <link rel="shortcut icon" href="../ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="../bootstrap.css">
     <LINK rel="stylesheet" type="text/css" href="../bootstrap.css">
-    <script src="../js/jquery-3.1.0.min.js"></script>
-    <script src="../js/bootstrap.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/index.js"></script>
-
     <style> body {background: url("../ext/24798.jpg")} </style>
 </head>
 

@@ -39,16 +39,14 @@ $p_senha        = $senha	    = $_POST ["pPass"];     //atribuição do campo "se
 function cadastra ($p_usuario, $p_nome, $p_senha, $p_link) { //Gravando no banco de dados !
     $sql = "insert into cafe_users (usuario, nome, senha) values ('$p_usuario', '$p_nome', '$p_senha');";
 if (mysqli_query($p_link, $sql)) { echo " 
-    <form class='form-custom plBG9' method='post'>
-    <br/><h1>Cadastro mal sucedido!</h1><br/>
-    <button id='enter' class='btn btn-danger btn-block btn-lg' type='button' onclick='toPage(3)'/>Voltar para o cadastro</button> <br/>
+    <form class='form-custom card-success' method='post'>
+    <br/><h1>Cadastro bem sucedido!</h1><br/>
+    <button id='enter' class='btn btn-success btn-block btn-lg' type='button' onclick='toPage(1)'/>Logar</button> <br/>
     </form>
-    <script type='text/javascript'> alert('Cadastro bem sucedido!'); </script>
-    <script> location.href='index.php'; </script> 
 "; }
 }
 function erro_cadastro () { echo "        
-    <form class='form-custom plBG9' method='post'>
+    <form class='form-custom btn-danger' method='post'>
     <br/><h1>Cadastro mal sucedido!</h1><br/>
     <button id='enter' class='btn btn-danger btn-block btn-lg' type='button' onclick='toPage(3)'/>Voltar para o cadastro</button> <br/>
     </form>
