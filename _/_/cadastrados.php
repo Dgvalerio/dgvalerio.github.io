@@ -6,14 +6,10 @@
     <link rel="shortcut icon" href="../../ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="../../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../../js/toolbar/jquery.toolbar.css"/>
-    <link rel="stylesheet" type="text/css" href="../../js/toolbar/font-awesome-4.6.3/css/font-awesome.css"/>
     <script src="../../js/jquery-3.1.0.min.js"></script>
     <script src="../../js/bootstrap.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
     <script src="../../js/index.js"></script>
-    <script src="../../js/toolbar/jquery.toolbar.js"></script>
-    <script src="../../js/toolbar/jquery.toolbar.min.js"></script>
 </head>
 
 <body>

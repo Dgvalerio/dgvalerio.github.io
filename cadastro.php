@@ -26,7 +26,7 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
 <body class="plBG7">
 <div id="content"> <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center">
-        <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav>
+        <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="100"> </div> </nav>
 
         <div>
             <form name="formcadastro" id="formcadastro" class="form-custom plB8" method="post" action="cad.php">

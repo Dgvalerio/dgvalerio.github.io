@@ -11,7 +11,7 @@
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/index.js"></script>
 </head>
-<body class="plBG7"> <div id="content"> <div class="container" align="center"> <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="./ext/logo_transp_branco.png" width="44"> </div> </nav> <div>
+<body class="plBG7"> <div id="content"> <div class="container" align="center"> <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../ext/logo_transp_branco.png" width="100"> </div> </nav> <div>
 <?php header("Content-Type: text/html; charset=UTF-8",true);
 /* Conexão */ $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
 /* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
@@ -59,9 +59,10 @@ $pesoD	= $_POST ["c_pesoD"];   if ($pesoD == '') { $pesoD = 0; }
 
 $sql = "insert into cafe_salvos (usuario, nome, idade, sexo, massa, estat, NAF, gest, imc_d, peso_d, dat) values ('$user',  '$nome', '$idade', '$sexo', '$massa', '$estat', '$NAF', '$gest', '$imcD', '$pesoD', '$date');";
 if (mysqli_query($link, $sql)) { echo " 
-    <form class='form-custom card-success' method='post'>
-    <br/><h1>Dados salvos com sucesso!</h1><br/>
-    <button id='enter' class='btn btn-success btn-block btn-lg' type='button' onclick='toPage(10)'/>Voltar</button> <br/>
+    <form class='form-custom card-success' method='post' action='CAFE.php'>
+    <br/><h1>Dados salvos com sucesso!</h1><br/> 
+    <input type='text' value='$user' name='c_user' class='collapse'>
+    <button id='enter' class='btn btn-success btn-block btn-lg' type='submit'/>Voltar</button> <br/>
     </form>
 "; } else { print ("Erro:" . mysqli_error($link)); }
 
