@@ -13,7 +13,7 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title> Cadastrar </title>
+    <title> C.A.F.E.: Cadastrar </title>
     <link rel="shortcut icon" href="ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -43,9 +43,9 @@ $vuser	= isset ($_POST ["c_vuser"])? $_POST ["c_vuser"]:'';
                                 <input name="pNome" id="pNome" type="text" placeholder="Digite seu nome de usuário" class="form-control" title="Nome"/>
                                 <br/>
                                 <label class="labPer" for="pPass">Senha</label> <br/>
-                                <input name="pPass" id="pPass" pattern="(?=^.{5,}$)(?=.*\d)(?=.*[a-z]).*$" type="password" placeholder="Digite sua senha" class="form-control">
+                                <input name="pPass" id="pPass" type="password" placeholder="Digite sua senha" class="form-control">
                                 <br/>
-                                <sup class="f-right">*A Senha deve conter <b>letras</b>, <b>números</b> e no <b>mínimo 5 caracteres</b>!</sup> <br/>
+                                <sup class="f-right">*Recomendamos que a senha contenha <b>letras</b>, <b>números</b> e no <b>mínimo 5 caracteres</b>!</sup> <br/>
                                 <label class="labPer" for="pCPass">Repita a senha</label> <br/>
                                 <input name="pCPass" id="pCPass" type="password" placeholder="Repita sua senha" class="form-control">
                                 <div id="pnStatus"><span id="pStatus"></span></div>

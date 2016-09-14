@@ -2,6 +2,21 @@ var stat = 0;
 var r = 0;
 var naf;
 var statd = 0;
+var stt = 0;
+
+function displaymenu() {
+    if (stt == 0) {
+        document.getElementById('pMenu').style.transition = '.4s';
+        document.getElementById('pMenu').style.left = '83.2%';
+        stt = 1;
+    }
+
+    else {
+        document.getElementById('pMenu').style.transition = '.4s';
+        document.getElementById('pMenu').style.left = '1800px';
+        stt = 0;
+    }
+}
 
 setTimeout(function(){
     $('#gif').css({"opacity":"0","transition":"all 1s"});
@@ -356,5 +371,8 @@ function toPage(pg) {
         case 10: location.href = "CAFE.php";    break;
         case 11: location.href = "_/cadastrados.php";    break;
         case 12: location.href = "salvos.php";    break;
+        case 20: location.href = "_/CAFE.php";    break;
+        case 22: location.href = "_/_/salvos.php";    break;
+        case 24: location.href = "_/index.php";    break;
     }
 }

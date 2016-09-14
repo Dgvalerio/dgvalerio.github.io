@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title> Usuários </title>
+    <title> C.A.F.E.: Usuários </title>
     <link rel="shortcut icon" href="../../ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="../../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">

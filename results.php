@@ -35,16 +35,16 @@ while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atua
 
     print("
     <script>
-    $(function () {
-        $('#pNome').val('$nomee');
-        $('#pIdade').val('$idadee');
+    $(function () {       
+        $('#pnRNome').val('asdfghh');
+        $('#pnRIdade').val('$idadee');
         $('#').val('$sexoo');
-        $('#').val('$massaa');
-        $('#').val('$estatt');
+        $('#pnRMassa').val('$massaa');
+        $('#pnREstatura').val('$estatt');
         $('#').val('$NAFF');
         $('#').val('$gestt');
-        $('#').val('$imcDD');
-        $('#').val('$pesoDD');
+        $('#pImcDes').val('$imcDD');
+        $('#pPesoDes').val('$pesoDD');
         $('#').val('$datt');        
     });
     </script>
@@ -58,107 +58,7 @@ while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atua
 </div>
 <div id="content" style="display: none"> <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center"> <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../ext/logo_transp_branco.png" width="100"> </div> </nav>
-        <div id="pnNImprime" class="collapse hidden-print">
-            <form class="form-custom plBG9" method="post" name="form" id="formulario">
-<div id="pn01">
-    <label class="labPer" for="pNome">Nome</label> <br/>
-    <input  id="pNome" type="text" placeholder="Digite seu nome" class="form-control" title="Nome" maxlength="70"/> <br/>
-
-    <label class="labPer" for="pIdade">Idade</label> <br/>
-    <input id="pIdade" type="number" placeholder="0" min="0" max="150" class="form-control">
-    <small class="right collapse" id="smCorrecao">Correção do fator de atividade Física: <span id="spCorrecao"> ~ </span> <br/> </small> <br/>
-
-    <div id="pnSexo">
-        <label class="labPer">Sexo</label> <br/>
-        <label class="custom-control custom-radio">
-            <input id="pSexMasculino" name="pSex" type="radio" value="opSex1" class="custom-control-input">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Masculino</span>
-        </label>
-        <label class="custom-control custom-radio m-l-3">
-            <input id="pSexFeminino" name="pSex" type="radio" value="opSex2" class="custom-control-input">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Feminino</span>
-        </label>
-    </div> <br/>
-</div>
-
-<div class="collapse" id="pn02">
-    <label class="labPer" for="pMassa">Massa corporal</label>
-    <div class="form-group">
-        <div class="input-group">
-            <input type="number" id="pMassa" placeholder="0" min="0" max="300" step="any" class="form-control">
-            <div class="input-group-addon">Kg</div>
-        </div>
-    </div> <br/>
-
-    <label class="labPer" for="pEstrutura">Estatura</label>
-    <div class="form-group">
-        <div class="input-group">
-            <input type="number" id="pEstrutura" placeholder="0" min="0" max="2,5" step="any" class="form-control">
-            <div class="input-group-addon">m</div>
-        </div>
-    </div> <br/>
-
-    <div class="collapse" id="pnGravida">
-        <label class="labPer">Gestante</label> <br/>
-        <label class="custom-control custom-radio">
-            <input id="pGravidaS" name="pGravida" type="radio" value="opGra1" class="custom-control-input">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Sim</span>
-        </label>
-        <label class="custom-control custom-radio m-l-3">
-            <input id="pGravidaN" name="pGravida"  type="radio" value="opGra2" class="custom-control-input">
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">Não</span>
-        </label>
-    </div> <br/>
-</div>
-
-<div class="collapse" id="pn03">
-    <label for="pNivel" class="labPer">Nível de atividade física</label>
-    <select id="pNivel" class="form-control">
-        <option value=""> (Clique para selecionar) </option>
-        <option value="1"> Leve </option>
-        <option value="2"> Moderada </option>
-        <option value="3" id="opIntensa"> Intensa </option>
-    </select>
-    <small class="left collapse" id="smFator">Fator de atividade Física: <span id="spFator"> ~ </span> </small>
-    <br/>
-</div>
-
-<div class="collapse" id="pn05">
-    <sup class="f-right">*Os campos abaixo são opcionais, clique para preencher</sup> <br/>
-
-    <div id="pnIMCD" onclick="imcPeso('fID')">
-    <label for="pImcDes" class="labPer">IMC desejado (Kg/m<sup>2</sup>)</label>
-    </div>
-
-    <div id="pnPesoImc">
-        <div> <div class="form-group m-a-0 collapse" id="fID">
-            <div class="input-group">
-                <input type="number" id="pImcDes" placeholder="0" min="0" class="form-control">
-                <div class="input-group-addon">Kg/m<sup>2</sup></div>
-            </div> </div> </div>
-
-        <div> <div class="form-group m-a-0 collapse" id="fPD">
-            <div class="input-group">
-                <input type="number" id="pPesoDes" placeholder="0" min="0" max="300" class="form-control">
-                <div class="input-group-addon">Kg</div>
-            </div> </div> </div>
-    </div>
-    <div id="pnPesoD" onclick="imcPeso('fPD')">
-    <label for="pPesoDes" class="labPer">Peso desejado (em Kg)</label>
-    </div>
-</div><br/>
-
-<div class="collapse" id="pn04">
-    <button id="btnCalc" class="btn btn-primary btn-block btn-lg" type="button" onclick="calculo()">Calcular</button>
-</div>
-            </form>
-            <br/>
-        </div>
-        <form class="result-custom pC9 crPreta collapse" id="pnResposta" method="post" action="sav.php">
+        <form class="result-custom pC9 crPreta" id="pnResposta" method="post" action="sav.php">
             <div id="pnImprime">
                 <table class="table table-striped">
                     <thead class="thead-inverse"> <tr> <th class="text-md-center" colspan="4"> Dados Básicos </th> </tr> </thead>
@@ -235,12 +135,8 @@ while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atua
 
 <div align="center" class="hidden-print">
     <div class="btn-group col-md-12" role="group">
-        <button type="button" id="btnRecalc" class="btn btn-primary btn-lg col-md-6" onclick="recalculo()">Recalcular / Modificar dados</button>
-        <button type="button" id="btnPrint"  class="btn btn-primary btn-lg col-md-6" onclick="Imprime()">Imprimir</button>
-    </div> <br> <br>
-    <div class="p-a-1">
-        <button id="btnSalva" class="btn btn-primary btn-block btn-lg" type="submit">Salvar</button>
-    </div>
+        <button type="button" id="btnPrint"  class="btn btn-primary btn-lg col-md-12" onclick="Imprime()">Imprimir</button>
+    </div> <br> <br> <br>
 </div>
 
 </form></div> <br/>

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title> Logando... </title>
+    <title> C.A.F.E.: Logando... </title>
     <link rel="shortcut icon" href="ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
@@ -39,12 +39,13 @@
                     <br/>
                 </form>
             "; } else if ($tst_two == 1) { print(" 
-                <form class='form-custom card-success' method='post' action='_/index.php'> 
-                    <br/><h1>Logado como <i>$vuser</i> com sucesso!</h1><br/>
-                    <button class='btn btn-success btn-block btn-lg' type='submit' onclick='toPage(4)'/>OK</button> 
-                    <input type='text' value='$vuser' name='l_vuser' class='collapse'>
-                    <br/>
+                <script>                                      
+                        setTimeout(function(){document.formLogS.submit()}, 1);                       
+                </script>
+                <form name='formLogS' class='form-custom card-success collapse' method='post' action='_/index.php'>  
+                    <input type='text' value='$vuser' name='l_vuser' class='collapse'>                   
                 </form>
+                
              "); }
 
 ?> <br/> </div> </div> <br/> </div> </body> </html>

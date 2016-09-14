@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title> Salvando... </title>
+    <title> C.A.F.E.: Salvando... </title>
     <link rel="shortcut icon" href="../ext/logo_miniatura.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="print" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
@@ -49,7 +49,7 @@ $date = date('d-m-Y');
 $user	= $_POST ["c_user"];    if ($user == '') { $user = 'Sem Nome'; }
 $nome = $_POST ["c_nome"];      if ($nome == '') { $nome = 'Sem Nome'; }
 $idade	= $_POST ["c_idade"];   if ($idade == '') { $idade = 0; }
-$sexo = $_POST ["c_sexo"];      if ($sexo == '') { $sexo = 0; }
+$sexo = $_POST ["c_sexo"];      if ($sexo == '') { $sexo = 1; }
 $massa	= $_POST ["c_massa"];   if ($massa == '') { $massa = 0; }
 $estat = $_POST ["c_estat"];    if ($estat == '') { $estat = 0; }
 $NAF	= $_POST ["c_NAF"];     if ($NAF == '') { $NAF = 0; }
