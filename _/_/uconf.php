@@ -13,9 +13,9 @@
     <script>
         function subAction(nn) { var page;
             if (nn == 1) {
-                page = 'salvos.php'
+                page = 'cadastrados.php'
             } else if (nn == 2) {
-                page = 'del.php'
+                page = 'udel.php'
             }
             document.aUsuario.action = page;
             document.aUsuario.submit();

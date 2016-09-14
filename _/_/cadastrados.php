@@ -1,3 +1,8 @@
+<?php header("Content-Type: text/html; charset=UTF-8",true); $estado = 0;
+/* Conexão */ $link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
+/* Criação do Banco de Dados */ $sql = 'create database if not exists `cafe_login` default character set utf8 collate utf8_general_ci;'; if (mysqli_query($link, $sql)) { echo ""; } else { echo 'Erro criando o banco de dados: ' . mysqli_connect_error() . "\n"; }
+/* Uso do Banco de Dados */ $db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
+$vuser	= isset ($_POST ["c_user"])? $_POST ["c_user"]:''; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,6 +17,13 @@
     <script src="../../js/index.js"></script>
 </head>
 
+<script>
+    function subAction(idd) {
+        $("#d_envia").val(idd);
+        document.aUsuario.submit();
+    }
+</script>
+
 <body>
 <div id="content">
     <div class="container" align="center">
@@ -19,6 +31,12 @@
         <br/>
         <div class="result-custom pC9 crPreta" id="pnResposta">
             <div id="pnImprime">
+
+                <form name="aUsuario" id="aUsuario" method="post" action='uconf.php'>
+                    <input type='text' id='d_envia' name='d_envia' class='collapse'>
+                    <input type='text' id='d_page' name='d_page' value="cadastrados" class='collapse'>
+                    <?php print ("<input type='text' value='$vuser' name='c_user' class='collapse'>");?>
+                </form>
 
                 <?php header("Content-Type: text/html; charset=UTF-8",true);
 
@@ -31,9 +49,21 @@
                 if (!$result) { die('Invalid query: ' . mysqli_connect_error()); }
 
                 echo"<table class='table table-striped pC9 crPreta'>";
-                echo"<thead class='thead-inverse'> <tr> <th class='col-md-3'>#</th> <th class='col-md-3'>Usuário</th> <th class='col-md-3'>Nome de usuário</th> <th class='col-md-3'>Senha</th> </tr> </thead> <tbody>";
+echo"<thead class='thead-inverse'> <tr> 
+<th class='col-md-1'>#</th> 
+<th class='col-md-3'>Usuário</th> 
+<th class='col-md-3'>Nome de usuário</th> 
+<th class='col-md-3'>Senha</th> 
+<th class='col-md-2 cntr'>Apagar</th>
+</tr> </thead> <tbody>";
                 while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atual e avança para o próximo registro
-                echo"<tr> <th class='col-md-3' scope='row'>$exibe[id]</th> <td class='col-md-3'>$exibe[usuario]</td> <td class='col-md-3'>$exibe[nome]</td> <td class='col-md-3'>$exibe[senha]</td> </tr>";
+echo"<tr> 
+<th class='col-md-1' scope='row'>$exibe[id]</th> 
+<td class='col-md-3'>$exibe[usuario]</td> 
+<td class='col-md-3'>$exibe[nome]</td> 
+<td class='col-md-3'>$exibe[senha]</td> 
+<th align='center' class='col-md-2 glyphicons' onclick='subAction($exibe[id])'><div class='glyphicons-17-bin'></div></th>
+</tr>";
                 }
                 echo"</tbody> </table>";
                 mysqli_close($link);

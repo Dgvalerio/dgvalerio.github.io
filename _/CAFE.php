@@ -1,18 +1,6 @@
-<?php header("Content-Type: text/html; charset=UTF-8",true); $idd = ''; $userr = ''; $nomee = ''; $idadee = ''; $sexoo = ''; $massaa = ''; $estatt = ''; $NAFF = ''; $gestt = ''; $imcDD = ''; $pesoDD = ''; $datt = '';
-/* Conexão */
-$link = mysqli_connect('localhost', 'root', ''); if (!$link) { die('Não foi possível conectar: ' . mysqli_connect_error()); } echo '';
-/* Uso do Banco de Dados */
-$db_selected = mysqli_select_db($link, 'cafe_login'); if (!$db_selected) { die ('Can\'t use foo : ' . mysqli_connect_error());  } else {echo ''; }
-
+<?php header("Content-Type: text/html; charset=UTF-8",true);
 $vuser	= isset ($_POST ["c_user"])? $_POST ["c_user"]:'';
 $idd = isset ($_POST ["d_envia"])? $_POST ["d_envia"]:'0';
-
-$result = mysqli_query($link, "select * from cafe_salvos where id = $idd;");
-if (!$result) { die('Invalid query: ' . mysqli_connect_error()); }
-
-while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atual e avança para o próximo registro
-    $idd = $exibe['id']; $userr = $exibe['usuario']; $nomee = $exibe['nome']; $idadee = $exibe['idade']; $sexoo = $exibe['sexo']; $massaa = $exibe['massa']; $estatt = $exibe['estat']; $NAFF = $exibe['NAF']; $gestt = $exibe['gest']; $imcDD = $exibe['imc_d']; $pesoDD = $exibe['peso_d']; $datt = $exibe['dat'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,24 +20,6 @@ while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atua
             #btnSalva { display: none; }
         </style>
     "); }
-
-    print("
-    <script>
-    $(function () {
-        $('#pNome').val('$nomee');
-        $('#pIdade').val('$idadee');
-        $('#').val('$sexoo');
-        $('#').val('$massaa');
-        $('#').val('$estatt');
-        $('#').val('$NAFF');
-        $('#').val('$gestt');
-        $('#').val('$imcDD');
-        $('#').val('$pesoDD');
-        $('#').val('$datt');        
-    });
-    </script>
-    ");
-
     ?>
 </head>
 <body class="plBG7">

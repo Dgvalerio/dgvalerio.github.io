@@ -33,19 +33,37 @@ while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atua
         </style>
     "); }
 
-    print("
-    <script>
+    if ($sexoo == 1) {
+        $sexoo = 'Masculino';
+    } else if ($sexoo == 2) {
+        $sexoo = 'Feminino';
+    }
+
+    if ($NAFF == 1) {
+        $NAFF = 'Leve';
+    } else if ($NAFF == 2) {
+        $NAFF = 'Moderada';
+    } else if ($NAFF == 3) {
+        $NAFF = 'Intensa';
+    }
+
+    if ($gestt == 1) {
+        $gestt = 'block';
+    } else if ($gestt == 2) {
+        $gestt = 'none';
+    }
+
+    print("<script>
     $(function () {       
-        $('#pnRNome').val('asdfghh');
-        $('#pnRIdade').val('$idadee');
-        $('#').val('$sexoo');
-        $('#pnRMassa').val('$massaa');
-        $('#pnREstatura').val('$estatt');
-        $('#').val('$NAFF');
-        $('#').val('$gestt');
-        $('#pImcDes').val('$imcDD');
-        $('#pPesoDes').val('$pesoDD');
-        $('#').val('$datt');        
+        $('#pnRNome').html('$nomee');
+        $('#pnRIdade').html('$idadee');
+        $('#pnRSexo').html('$sexoo');
+        $('#pnRMassa').html('$massaa');
+        $('#pnREstatura').html('$estatt');
+        $('#pnRNivel').html('$NAFF');
+        $('#cGest').css({'display':'$gestt'});
+        $('#pImcDes').html('$imcDD');
+        $('#pPesoDes').html('$pesoDD');       
     });
     </script>
     ");
@@ -53,10 +71,7 @@ while ($exibe = mysqli_fetch_assoc($result) ) { // Obtém os dados da linha atua
     ?>
 </head>
 <body class="plBG7">
-<div id="preloader" style="display:block; position: absolute; left: 0; right: 0; bottom: 0; top: 0; background: #1b272e; z-index: 9999;">
-    <img id="gif" src="../ext/anim.gif" style="width:640px; height:360px; position:absolute; top:50%; left:50%; margin-top:-180px; margin-left:-320px;">
-</div>
-<div id="content" style="display: none"> <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
+<div id="content"> <nav class="navbar-y"> <div class="plBG5 navbar-y"><br/> <br/> <br/> <br/> <br/> </div> </nav>
     <div class="container" align="center"> <nav class="navbar-fixed-top navbar-x"> <div class="plBG5 navbar-x"> <img class="m-a-p" src="../ext/logo_transp_branco.png" width="100"> </div> </nav>
         <form class="result-custom pC9 crPreta" id="pnResposta" method="post" action="sav.php">
             <div id="pnImprime">
